@@ -1,2 +1,2 @@
 # Stake-project
-Staking website example
+Staking website 
