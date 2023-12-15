@@ -233,6 +233,10 @@ const contractAbi = [
 const contract = new web3.eth.Contract(contractAbi, contractAddress);
 var address;
 
+function getContractAddress() {
+  return contractAddress;
+}
+
 async function connect() {
   try {
     if (window.ethereum) {
@@ -277,9 +281,10 @@ async function stake() {
       loading();
       console.log("Transaction Hash:", hash);
     })
-    .on("confirmation", (confirmationNumber, receipt) => {
+    .on("confirmation", (confirmationNumber, receipt, hash) => {
       if (confirmationNumber === 0) {
         showSuccess("You have SuccessFuly Stake in Site");
+        transactionOrder("Stake", hash);
         UserBalance();
       }
     })
@@ -303,7 +308,7 @@ async function Unstake() {
     .unSatke()
     .send({ from: address })
     .on("transactionHash", (hash) => {
-        loading()
+      loading();
       console.log(hash);
       userBalance();
     })
@@ -335,12 +340,13 @@ async function withdraw() {
       .withdraw(weiAmount)
       .send({ from: address })
       .on("transactionHash", (hash) => {
-        loading()
+        loading();
         console.log(hash);
       })
-      .on("confirmation", (confirmationNumber, receipt) => {
+      .on("confirmation", (confirmationNumber, receipt, hash) => {
         if (confirmationNumber === 0) {
           showSuccess("You have successfully withdraw the desired amount");
+          transactionOrder("Withdraw", hash);
           UserBalance();
         }
       })
@@ -357,9 +363,9 @@ async function withdrawReward() {
     await contract.methods
       .withdrawReward()
       .call({ from: address })
-      .on("transactionHash",(hash)=>{
-        loading()
-        console.log(hash)
+      .on("transactionHash", (hash) => {
+        loading();
+        console.log(hash);
       })
       .on("confirmation", (confirmationNumber, receipt) => {
         if (confirmationNumber === 0) {
@@ -367,17 +373,16 @@ async function withdrawReward() {
           checkReward();
         }
       })
-    .on("error", (err) => {
-      console.error("Error:", err);
+      .on("error", (err) => {
+        console.error("Error:", err);
 
-      if (err.message.includes("execution reverted")) {
-        const errorMessage =
-          "You can't withdraw your reward at this time";
-        window.alert(errorMessage);
-      } else {
-        console.error("Unhandled error:", err);
-      }
-    });
+        if (err.message.includes("execution reverted")) {
+          const errorMessage = "You can't withdraw your reward at this time";
+          window.alert(errorMessage);
+        } else {
+          console.error("Unhandled error:", err);
+        }
+      });
   } catch (err) {
     console.log(err);
   }
@@ -392,15 +397,14 @@ async function depositOwner() {
   const owner = await contract.methods.getOwner().call();
   if (address != owner) {
     showError("You are not the owner of the Site");
-  } 
-  else {
+  } else {
     const etherValue = document.getElementById("depositOwner").value;
     const valueInWei = web3.utils.toWei(etherValue.toString(), "ether");
     await contract.methods
       .depositOwner()
       .send({ from: address, value: valueInWei })
       .on("transactionHash", (hash) => {
-        loading()
+        loading();
         console.log("TransactionHash", hash);
       })
       .on("confirmation", (confirmationNumber, receipt) => {
@@ -408,7 +412,7 @@ async function depositOwner() {
           showSuccess("You have successfully deposit in contract");
           checkReward();
         }
-      })
+      });
   }
 }
 
@@ -461,4 +465,17 @@ function loading() {
       element.classList.remove("blur");
     });
   }, 16000);
+}
+
+function transactionOrder(order, trasnactionHash) {
+  const newOrder = document.createElement("div");
+  newOrder.innerHTML = `
+  <div class="statedtoken">
+    <h3>Order:</h3>
+    <h4>${order}</h4>
+    <h3>TransactionHash:</h3>
+    <h4>${trasnactionHash}</h4>
+    <a href="https://mumbai.polygonscan.com/tx/${trasnactionHash}" class="btn" style="text-align: center;">Check Transaction</a>
+ </div>`;
+  document.getElementById("stakeorders").appendChild(newOrder);
 }
