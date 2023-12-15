@@ -1,138 +1,188 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
-    <link rel="stylesheet" href="stakin.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stake Site</title>
+    <link rel="stylesheet" href="stakin.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.delivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-</head>
+    <script
+      language="javascript"
+      src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <!-- menu site -->
     <nav>
-        <img src="pictures/gem.png" id="logo" alt="">
-        <h1 id="content">STAKING SITE </h1>
-        <a href="#">Home</a>
-        <a href="#">Project</a>
-        <a href="#">Staking</a>
-        <a href="#">Pages</a>
-        <a href="pages/index.html">Owner</a>
-        <button class="menubtn" onclick="connect()" id="Metamask" style="background-color: rgb(113, 210, 171);">My wallet</button>
-        <button class="menubtn">BUY TOKEN</button>
+      <img src="pictures/gem.png" id="logo" alt="" />
+      <h1 id="content">STAKING SITE</h1>
+      <!-- <a href="#">Home</a>
+      <a href="#">Project</a>
+      <a href="#">Staking</a>
+      <a href="#">Pages</a>
+      <a href="pages/index.html">Owner</a>  -->
+      <button
+        class="menubtn"
+        onclick="connect()"
+        id="metaMask"
+        style="background-color: rgb(113, 210, 171)"
+      >
+        Connect wallet
+      </button>
+      <!-- <button
+        class="menubtn"
+        onclick="disconnect()"
+        id="metaMask"
+        style="background-color: red"
+      >
+        Disconnect wallet
+      </button> -->
+      <!-- <button class="menubtn">BUY TOKEN</button> -->
+      <h3 id="wallet" style="color: red">WalletAddress: NotConnect</h3>
     </nav>
 
     <!-- project details div -->
     <div class="dt1">
-        <h4 id="pr">PROJECT DETAILS</h4>
-        <h5 class="dtr">My Stake</h5>
-        <h5 class="dtr">Total Stake</h5>
+      <h4 id="pr">PROJECT DETAILS</h4>
+      <h5 class="dtr">My Stake</h5>
+      <h5 class="dtr">Total Reward</h5>
     </div>
     <!-- total stake div -->
     <div class="dt2">
-        <h2 id="stakingv3">STAKING V3</h2>
-        <h3 class="dtrr">2200 WWS</h3>
-        <h3 class="dtrr" id="tlstake">4500 WWS</h3>
+      <h2 id="stakingv3">STAKING V3</h2>
+      <h3 class="dtrr" id="userBalance">0 WWS</h3>
+      <h3 class="dtrr" id="userReward">0 WWS</h3>
     </div>
     <div class="section">
-        
-        <!-- Offers Container div -->
-        <div class="all-offers-container">
-            
-            <!-- Offer Contents Container div-1 -->
-            <div class="offer-container">
-
-                <!-- Offer Titlt and Contents div -->
-                <div class="offer-title-contents-div">
-
-                    <!-- Title and Picture div -->
-                    <div class="title-pic-div">
-                        <h1>GOLD</h1>
-                        <img src="pictures/safebox (2).png" class="tokens-lg" alt="">
-                    </div>
-
-                    <!-- Offer Contents div -->
-                    <div class="offer-contents">
-                        <h2 id="tmreward">30 DAYS</h2>
-                        <h2 class="right-contents apy-divs" id="reward">20% APY</h2>
-                        <h2 class="cl-divs">TVL</h2>
-                        <h2 class="right-contents">60 WWS</h2>
-                        <h2 class="cl-divs">AMOUNT</h2>
-                        <h2 class="right-contents" id="stakeamt">200 WWS</h2>
-                        <button class="btn" onclick="Stake(goldstake,60)">STAKE</button>
-                    </div>
-
-                </div>
-
+      <!-- Offers Container div -->
+      <div class="all-offers-container">
+        <!-- Offer Contents Container div-1 -->
+        <div class="offer-container">
+          <!-- Offer Titlt and Contents div -->
+          <div class="offer-title-contents-div">
+            <!-- Title and Picture div -->
+            <div class="title-pic-div">
+              <h1>GOLD</h1>
+              <img src="pictures/safebox (2).png" class="tokens-lg" alt="" />
             </div>
-            
-            <!-- Offer Contents Container div-2 -->
-            <div class="offer-container">
 
-                <!-- Offer Contents div -->
-                 <div class="offer-contents-div">
-
-                    <div class="offer-title-contents-div">
-
-                        <!-- Title and Picture div -->
-                        <div class="title-pic-div">
-                            <h1>PLATINUM</h1>
-                            <img src="pictures/safebox (1).png" class="tokens-lg" alt="">
-                        </div>
-    
-                        <!-- Offer Contents div -->
-                         <div class="offer-contents">
-                            <h2>60 DAYS</h2>
-                            <h2 class="right-contents apy-divs">30% APY</h2>
-                            <h2 class="cl-divs">TVL</h2>
-                            <h2 class="right-contents">150 WWS</h2>
-                            <h2 class="cl-divs">AMOUNT</h2>
-                            <h2 class="right-contents">500 WWS</h2>
-                            <button class="btn" onclick="Stake(500,platinumstake,150)">STAKE</button>
-                        </div>
-    
-    
-                    </div>
-                    
-
-                </div>
-
+            <!-- Offer Contents div -->
+            <div class="offer-contents">
+              <h2 id="tmreward">1 DAYS</h2>
+              <h2 class="right-contents apy-divs" id="reward">5% APY</h2>
+              <h2 class="cl-divs">TVL</h2>
+              <h2 class="right-contents">60 WWS</h2>
+              <h2 class="cl-divs">AMOUNT</h2>
+              <h2 class="right-contents" id="stakeamt">3000 WWS</h2>
+              <button class="btn" onclick="stake()">STAKE</button>
+              <button class="btn" onclick="Unstake()">UNSTAKE</button>
+              <button class="btn" onclick="withdraw()">WITHDRAW</button>
+              <input
+                type="number"
+                id="amountWithdraw"
+                class="amountWithdraw"
+                style="
+                  border-radius: 5px;
+                  background-color: rgb(1, 8, 47);
+                  color: rgb(193, 232, 219);
+                  box-shadow: 2px 2px 5px rgba(48, 167, 127, 0.712);
+                "
+                placeholder="Withdraw Amount"
+              />
+              <br />
+              <br />
+              <br />
+              <button
+                class="btn rewardwithdraw"
+                style="margin-left: -110px"
+                onclick="withdrawReward()"
+              >
+                WITHDRAW REWARD
+              </button>
             </div>
-            
-            <!-- Offer Contents Container div-3 -->
-            <div class="offer-container">
+          </div>
+        </div>
 
-                <!-- Offer Contents div -->
-                 <div class="offer-contents-div">
+        <!-- Offer Contents Container div-2 -->
+        <div class="offer-container">
+          <!--  Offer Contents div -->
+          <div class="offer-contents-div">
+            <div class="offer-title-contents-div">
+              <!-- Title and Picture div -->
+              <div class="title-pic-div">
+                <h1>PLATINUM</h1>
+                <img src="pictures/safebox (1).png" class="tokens-lg" alt="" />
+              </div>
 
-                    <div class="offer-title-contents-div"> 
+              <!-- Offer Contents div -->
+              <div class="offer-contents">
+                <h2>60 DAYS</h2>
+                <h2 class="right-contents apy-divs">30% APY</h2>
+                <h2 class="cl-divs">TVL</h2>
+                <h2 class="right-contents">150 WWS</h2>
+                <h2 class="cl-divs">AMOUNT</h2>
+                <h2 class="right-contents">500 WWS</h2>
+                <button class="btn" onclick="UserBalance()">STAKE</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                        <!-- Title and Picture div -->
-                        <div class="title-pic-div">
-                            <h1>DIAMOND</h1>
-                            <img src="pictures/safebox.png" class="tokens-lg" alt="">
-                        </div>
-    
-                        
-                         <div class="offer-contents">
-                            <h2>90 DAYS</h2>
-                            <h2 class="right-contents apy-divs">40% APY</h2>
-                            <h2 class="cl-divs">TVL</h2>
-                            <h2 class="right-contents">240 WWS</h2>
-                            <h2 class="cl-divs">AMOUNT</h2>
-                            <h2 class="right-contents">800 WWS</h2>
-                            <button class="btn" onclick="Stake(800,diamontake,240)">STAKE</button>
-                        </div>
-    
-    
-                    </div>
+        <!-- Offer Contents Container div-3 -->
+        <div class="offer-container">
+          <!-- Offer Contents div -->
+          <div class="offer-contents-div">
+            <div class="offer-title-contents-div">
+              <!-- Title and Picture div -->
+              <div class="title-pic-div">
+                <h1>OWNER</h1>
+                <img src="pictures/safebox.png" class="tokens-lg" alt="" />
+              </div>
 
-                </div>
-
-            </div> 
-            <!-- <div class="widraw-unstake">
+              <div class="offer-contents">
+                <input
+                  type="number"
+                  id="depositOwner"
+                  style="
+                    width: 325px;
+                    height: 35px;
+                    margin-top: 165px;
+                    border-radius: 5px;
+                    background-color: rgb(1, 8, 47);
+                    color: rgb(193, 232, 219);
+                    box-shadow: 2px 2px 5px rgba(48, 167, 127, 0.712);
+                  "
+                  placeholder="Amount Deposit"
+                />
+                <br />
+                <!-- <h2>90 DAYS</h2>
+                <h2 class="right-contents apy-divs">40% APY</h2>
+                <h2 class="cl-divs">TVL</h2>
+                <h2 class="right-contents">240 WWS</h2>
+                <h2 class="cl-divs">AMOUNT</h2>
+                <h2 class="right-contents">800 WWS</h2> -->
+                <button class="btn" onclick="owner()">OWNER</button>
+                <button
+                  class="btn"
+                  onclick="depositOwner()"
+                  style="margin-left: 25px"
+                >
+                  deposit Owner
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div id="loading">Loading</div>
+        <div id="main-content">
+          Loading
+        </div> -->
+        <!-- <div class="widraw-unstake">
                 Amount: <input type="text" id="amountwidraw" placeholder="Amount stake" style="border-radius: 10px;">
                 Stakeid: <input type="text" id="userid" placeholder="Stakeid" style="border-radius: 10px;">
                 <button onclick="withdraw(1)">widraw</button>
@@ -142,24 +192,27 @@
                 <br><br>
                 <button onclick="totalsuply()">totalsupply</button>
             </div> -->
-
-        </div>
-
+      </div>
     </div>
     <!-- transaction result -->
     <div id="stakeorders">
-        <div class="statedtoken">
-            <img src="pictures/safebox (2).png" class="tokens-lg" alt="">
-            <h4 id="hGold">GOLD</h4>
-            <h3>Amount:</h3>
-            <h4>200WWS</h4>
-            <h3>Start:</h3>
-            <h4>2022/8/13</h4>
-            <h3>Capital+Reward:</h3>
-            <h4>200WWS</h4>
-        </div>
+      <div class="statedtoken">
+        <img src="pictures/safebox (2).png" class="tokens-lg" alt="" />
+        <h4 id="hGold">GOLD</h4>
+        <h3>Amount:</h3>
+        <h4>200WWS</h4>
+        <h3>Start:</h3>
+        <h4>2022/8/13</h4>
+        <h3>Capital+Reward:</h3>
+        <h4>200WWS</h4>
+      </div>
     </div>
-</body>
+  </body>
 
-<script src="stake.js"></script>
+  <script src="stake.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/spinkit@1.2.5/spinkit.min.css"
+  />
 </html>

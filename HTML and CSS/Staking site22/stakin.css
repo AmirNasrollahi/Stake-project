@@ -1,140 +1,138 @@
-
-body{
-    background-color: rgb(1, 8, 47);
-    color: aliceblue;
+body {
+  background-color: rgb(1, 8, 47);
+  color: rgb(255, 255, 255);
 }
-.dt1{
-    /* align-items: center; */
-    margin-left: 10%;
-    width: 80%;
-    height: fit-content;
-    display: block;
-    margin-top: 50px;
-    overflow: hidden;
+.dt1 {
+  /* align-items: center; */
+  margin-left: 10%;
+  width: 80%;
+  height: fit-content;
+  display: block;
+  margin-top: 50px;
+  overflow: hidden;
 }
-.dt2{
-    margin-left: 10%;
-    width: 80%;
-    height: fit-content;
-    overflow: hidden;
+.dt2 {
+  margin-left: 10%;
+  width: 80%;
+  height: fit-content;
+  overflow: hidden;
 }
-.wallet{
-    float: right;
-    margin-right: 20px;
+.wallet {
+  float: right;
+  margin-right: 20px;
 }
-.pages{
-    position: absolute;
-    left: 500px;
-} 
- #pr{
-    margin-left: -1PX;
-    color: chartreuse;
-    float: left;
+.pages {
+  position: absolute;
+  left: 500px;
 }
-#stakingv3{
-    /* margin-left: -145px; */
-    float: left;
+#pr {
+  margin-left: -1px;
+  color: chartreuse;
+  float: left;
 }
-.dtr{
-    /* display: inline; */
-    margin-right: 50px;
-    margin-left: 100px;
-    float: right;
-    color: rgba(255, 255, 255, 0.847);
+#stakingv3 {
+  /* margin-left: -145px; */
+  float: left;
 }
-.dtrr{
-    float: right;
-    color: aliceblue;
-    font-size: 20px;
-    margin-right: 8px;
-    margin-left: 110px;
+.dtr {
+  /* display: inline; */
+  margin-right: 50px;
+  margin-left: 100px;
+  float: right;
+  color: rgba(255, 255, 255, 0.847);
 }
-a{
-    text-decoration: none;
-    color: aliceblue;
-    margin-left: 50px;
-    
+.dtrr {
+  float: right;
+  color: aliceblue;
+  font-size: 20px;
+  margin-right: 40px;
+  margin-left: 80px;
 }
-.menubtn{
-    color: aliceblue;
-    background-color: rgb(1, 8, 47);
-    border-color: aliceblue;
-    float: right;
-    margin-left: 30px;
-    width: 150px;
-    height: 40px;
+a {
+  text-decoration: none;
+  color: aliceblue;
+  margin-left: 50px;
 }
-.menubtn:hover{
-    transition: 0.4s;
-    box-shadow: 4px 8px 8px #12766d;
+.menubtn {
+  color: aliceblue;
+  background-color: rgb(1, 8, 47);
+  border-color: aliceblue;
+  float: right;
+  margin-left: 30px;
+  width: 150px;
+  height: 40px;
 }
-nav{
-    margin-right: 10%;
-    height: fit-content;
-    margin-top: 30px;
-    text-align: center;
+.menubtn:hover {
+  transition: 0.4s;
+  box-shadow: 4px 8px 8px #12766d;
 }
-#content{
-    margin-left: 10px;
-    margin-top: -4px;
-    float: left;
+nav {
+  margin-right: 10%;
+  height: fit-content;
+  margin-top: 30px;
+  text-align: center;
 }
-#logo{
-    margin-top: -15px;
-    border-radius: 10px;
-    float: left;
-    width: 50px;
-    height: 50px;
+#content {
+  margin-left: 10px;
+  margin-top: -4px;
+  float: left;
 }
-.stakel1{
-    background-color: rgb(24, 20, 68);
-    float: left;
-    width: 350px;
-    margin-left: 10%;
-    height: 500px;
-    overflow: hidden;
+#logo {
+  margin-top: -15px;
+  border-radius: 10px;
+  float: left;
+  width: 50px;
+  height: 50px;
 }
-.lvtoken{
-    font-size: 28px;
-    position: relative;
-    left: 15px;
-    margin-bottom: -20px;
+.stakel1 {
+  background-color: rgb(24, 20, 68);
+  float: left;
+  width: 350px;
+  margin-left: 10%;
+  height: 500px;
+  overflow: hidden;
 }
-h6{
-    background-color: rgb(33, 33, 33);
-    display: block;
-    float: left;
-    margin-bottom: 50px;
+.lvtoken {
+  font-size: 28px;
+  position: relative;
+  left: 15px;
+  margin-bottom: -20px;
 }
-.txtlr{
-    float: right;
+h6 {
+  background-color: rgb(33, 33, 33);
+  display: block;
+  float: left;
+  margin-bottom: 50px;
 }
-.statedtoken{
-    display: flex;
-    flex-direction:row;
-    justify-content: space-around;
-    align-items: center;
-    /* margin: 4px; */
-    border-radius: 5px;
-    background-color: rgba(48, 167, 127, 0.712);
-    width: 85%;
-    height: 75px;
-    margin-left: 7%;
-    overflow: hidden;
-    margin-top: 5%;
-    /* display: grid;
+.txtlr {
+  float: right;
+}
+.statedtoken {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  /* margin: 4px; */
+  border-radius: 5px;
+  background-color: rgba(48, 167, 127, 0.712);
+  width: 85%;
+  height: 75px;
+  margin-left: 7%;
+  overflow: hidden;
+  margin-top: 5%;
+  /* display: grid;
     grid-template-columns: 30% 20% 20%; */
 }
-.nametkn{
-    float: left;
+.nametkn {
+  float: left;
 }
-.resultday{
-    float: right;
+.resultday {
+  float: right;
 }
-.detailstkn{
-    display: grid;
-    grid-template-columns: 30% 30% 30% !important;
-    margin-left: 300px;
+.detailstkn {
+  display: grid;
+  grid-template-columns: 30% 30% 30% !important;
+  margin-left: 300px;
 }
 /* .................................................................abolfazl code.................................................. */
 /* .dt1{
@@ -143,105 +141,143 @@ background-color: aquamarine;
  display: grid;
 grid-template-columns: auto auto;
 } */
-.dt1 h3, h4 {
-    /* width: fit-content; */
-    /* background-color: black; */
-    display: inline-block;
-    margin-left: -80px;
+.dt1 h3,
+h4 {
+  /* width: fit-content; */
+  /* background-color: black; */
+  display: inline-block;
+  margin-left: -80px;
 }
 
-#hDays{
-    color: rgb(236, 153, 85);
+#hDays {
+  color: rgb(236, 153, 85);
 }
 /* body Style */
 body {
-    margin: 0;
-    background-color: #060918;
+  margin: 0;
+  background-color: #060918;
 }
 
 /* Section Style */
 .section {
-    width: 80%;
-    height: fit-content;
-    margin-left: 10%;
+  width: 80%;
+  height: fit-content;
+  margin-left: 10%;
 }
 
 /* All Offers Container Style */
 .all-offers-container {
-    height: fit-content;
-    max-width: 1350px;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
-    column-gap: 5%;
+  height: fit-content;
+  max-width: 1350px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  column-gap: 5%;
 }
 
 /* Offer Container Style */
 .offer-container {
-    height: 350px;
-    background-color: #17182C;
+  height: 450px;
+  background-color: #0b0d4d;
 }
 
 /* Offer Contents div Style */
 .offer-title-contents-div {
-    width: 85%;
-    height: 85%;
-    margin: 30px;
-    color: whitesmoke;
-    font-family: roboto;
+  width: 85%;
+  height: 85%;
+  margin: 30px;
+  color: whitesmoke;
+  font-family: roboto;
 }
 
 /* Title and Picture div Style */
 .title-pic-div {
-    display: grid;
-    grid-template-columns: 75% 25%;
+  display: grid;
+  grid-template-columns: 75% 25%;
 }
 .title-pic-div h1 {
-    /* background-color: aquamarine; */
+  /* background-color: aquamarine; */
 }
 .title-pic-div img {
-    margin: 10px;
+  margin: 10px;
 }
 
 /* Offer Contents Style */
 .offer-contents {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    height: 73%;
-    font-size: 14px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 73%;
+  font-size: 14px;
 }
 .right-contents {
-    text-align: right;
+  text-align: right;
 }
 
 /* Stake Button Style */
 .btn {
-    background-color: #6B55FF;
-    border: none;
-    padding: 11px 0;
-    width: 130px;
-    color: whitesmoke;
-    font-weight: bold;
-    font-size: 15px;
+  background-color: #6b55ff;
+  border: none;
+  padding: 11px 0;
+  width: 130px;
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 2px solid transparent; 
+  transition: border-color 0.3s ease-in-out;
 }
-.btn:hover{
-    background-color: #3e3192;
-    transition: 0.5s;
-    box-shadow: 3px 5px 5px rgba(94, 21, 196, 0.842);
+.btn:hover {
+  background-color: #3e3192;
+  transition: 0.5s;
+  box-shadow: 3px 5px 5px rgba(94, 21, 196, 0.842);
+  border-color: rgba(48, 167, 127, 0.712); 
+  animation: rotate 3s linear infinite;
+  color: white;
 }
-.apy-divs{
-    color: rgb(43, 180, 151);
+.apy-divs {
+  color: rgb(43, 180, 151);
 }
-.cl-divs{
-    color: rgb(158, 157, 157);
+.cl-divs {
+  color: rgb(158, 157, 157);
 }
-.tokens-lg{
-    width: 60px;
-    height: 60px;
+.tokens-lg {
+  width: 60px;
+  height: 60px;
 }
 
-.widraw-unstake{
-margin-left: 300px;
-    width: fit-content;
+.widraw-unstake {
+  margin-left: 300px;
+  width: fit-content;
+}
+
+.walletaddress {
+  color: red;
+  background-color: red;
+}
+
+.rewardwithdraw {
+  width: 200px;
+}
+.amountWithdraw {
+  margin-top: 5px;
+  height: 30px;
+}
+
+.my-error-popup {
+  /* color: rgb(43, 180, 151); */
+  color: whitesmoke;
+  background-color: rgb(1, 8, 47); 
+}
+
+.my-loading-popup{
+  filter: blur(0px);
+  color: whitesmoke;
+  background-color: rgb(1, 8, 47);
+  border-radius: 7px;
+}
+
+.blur:not(.my-loading-popup){
+  filter: blur(5px); 
 }
