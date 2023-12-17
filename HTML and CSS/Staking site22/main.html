@@ -79,7 +79,7 @@
               <h2 class="right-contents">60 WWS</h2>
               <h2 class="cl-divs">AMOUNT</h2>
               <h2 class="right-contents" id="stakeamt">3000 WWS</h2>
-              <button class="btn" onclick="stake()">STAKE</button>
+              <button class="btn" onclick="stakeV2()">STAKE</button>
               <button class="btn" onclick="Unstake()">UNSTAKE</button>
               <button class="btn" onclick="withdraw()">WITHDRAW</button>
               <input
@@ -127,7 +127,7 @@
                 <h2 class="right-contents">150 WWS</h2>
                 <h2 class="cl-divs">AMOUNT</h2>
                 <h2 class="right-contents">500 WWS</h2>
-                <button class="btn" onclick="UserBalance()">STAKE</button>
+                <button class="btn" onclick="approveContract()">APPROVE</button>
               </div>
             </div>
           </div>
@@ -140,18 +140,56 @@
             <div class="offer-title-contents-div">
               <!-- Title and Picture div -->
               <div class="title-pic-div">
-                <h1>OWNER</h1>
-                <img src="pictures/safebox.png" class="tokens-lg" alt="" />
+                <h1>OWNER PANEL</h1>
+                <!-- <img src="pictures/safebox.png" class="tokens-lg" alt="" /> -->
               </div>
 
               <div class="offer-contents">
+                <button class="btn" style="font-size: 12px;" onclick="withdrawOwner()">WITHDRAW OWNER</button>
+                <input
+                  type="number"
+                  id="withdrawOwner"
+                  class="amountWithdraw"
+                  style="
+                    border-radius: 5px;
+                    background-color: rgb(1, 8, 47);
+                    color: rgb(193, 232, 219);
+                    box-shadow: 2px 2px 5px rgba(48, 167, 127, 0.712);
+                  "
+                  placeholder="Withdraw Amount"
+                />
+                <button class="btn" style="font-size: 12px;" onclick="changeTimeReward()">CHANGE TIMEREWARD</button>
+                <input
+                  type="number"
+                  id="changeTimeReward"
+                  class="amountWithdraw"
+                  style="
+                    border-radius: 5px;
+                    background-color: rgb(1, 8, 47);
+                    color: rgb(193, 232, 219);
+                    box-shadow: 2px 2px 5px rgba(48, 167, 127, 0.712);
+                  "
+                  placeholder="Time Reward"
+                />
+                <button class="btn" style="font-size: 12px;" onclick="changeProfitPercent()">CHANGE PROFITPERCENT</button>
+                <input
+                  type="number"
+                  id="changeProfitPercent"
+                  class="amountWithdraw"
+                  style="
+                    border-radius: 5px;
+                    background-color: rgb(1, 8, 47);
+                    color: rgb(193, 232, 219);
+                    box-shadow: 2px 2px 5px rgba(48, 167, 127, 0.712);
+                  "
+                  placeholder="Profit Percent"
+                />
                 <input
                   type="number"
                   id="depositOwner"
                   style="
                     width: 325px;
                     height: 35px;
-                    margin-top: 140px;
                     border-radius: 5px;
                     margin-bottom: 20px;
                     background-color: rgb(1, 8, 47);
@@ -175,8 +213,13 @@
                 >
                   deposit Owner
                 </button>
-                <a href="https://mumbai.polygonscan.com/address/0x157cB4a6e607763691Dbe34a5026fA4F700c4310" style="text-align: center; margin-top: 5px;margin-left: -1px;" class="btn">Contract Details</a>
-                <br>
+                <a
+                  href="https://mumbai.polygonscan.com/address/0x3101F92571BbDEDD52520B0A7Ed96467ADc1a9CB"
+                  style="text-align: center; margin-top: 5px; margin-left: -1px"
+                  class="btn"
+                  >Contract Details</a
+                >
+                <br />
               </div>
             </div>
           </div>

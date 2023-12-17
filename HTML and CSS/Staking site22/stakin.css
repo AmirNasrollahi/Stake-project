@@ -261,8 +261,9 @@ body {
   width: 200px;
 }
 .amountWithdraw {
+  width: 150px;
   margin-top: 5px;
-  height: 30px;
+  height: 35px;
 }
 
 .my-error-popup {

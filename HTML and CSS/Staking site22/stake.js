@@ -1,6 +1,6 @@
 const web3 = new Web3(window.ethereum);
 
-const contractAddress = "0x157cB4a6e607763691Dbe34a5026fA4F700c4310";
+const contractAddress = "0x3101F92571BbDEDD52520B0A7Ed96467ADc1a9CB";
 const contractAbi = [
   {
     inputs: [
@@ -233,6 +233,56 @@ const contractAbi = [
 const contract = new web3.eth.Contract(contractAbi, contractAddress);
 var address;
 
+// async function approveContract(amount) {
+//   const etherValue = 1000000000000000000;
+//   const valueInether = web3.utils.fromWei(etherValue.toString(), "ether");
+
+//   await contract.methods
+//     .approveContract(valueInether)
+//     .send({ from: address })
+//     .on("transactionHash", (hash) => {
+//       loading();
+//       console.log("Transaction Hash:", hash);
+//       transactionOrder("Stake", hash);
+//     })
+//     .on("confirmation", (confirmationNumber, receipt, hash) => {
+//       if (confirmationNumber === 0) {
+//         showSuccess("You have SuccessFuly Stake in Site");
+//         UserBalance();
+//       }
+//     })
+//     .on("error", (error) => {
+//       console.error("Error:", error);
+//       // Handle transaction errors here
+//     });
+// }
+
+// async function stakeV2() {
+//   const etherValue = 1000000000000000000;
+//   const valueInether = web3.utils.fromWei(etherValue.toString(), "ether");
+//   //   const valueInFinney = web3.utils.fromWei(valueInWei, "finney");
+//   const transaction = await contract.methods
+//     .stake(valueInether)
+//     .send({ from: address})
+//     .on("transactionHash", (hash) => {
+//       loading();
+//       console.log("Transaction Hash:", hash);
+//       transactionOrder("Stake", hash);
+//     })
+//     .on("confirmation", (confirmationNumber, receipt, hash) => {
+//       if (confirmationNumber === 0) {
+//         showSuccess("You have SuccessFuly Stake in Site");
+//         UserBalance();
+//       }
+//     })
+//     .on("error", (error) => {
+//       console.error("Error:", error);
+//       // Handle transaction errors here
+//     });
+
+//   console.log(transaction.address);
+// }
+
 function getContractAddress() {
   return contractAddress;
 }
@@ -280,11 +330,11 @@ async function stake() {
     .on("transactionHash", (hash) => {
       loading();
       console.log("Transaction Hash:", hash);
+      transactionOrder("Stake", hash);
     })
     .on("confirmation", (confirmationNumber, receipt, hash) => {
       if (confirmationNumber === 0) {
         showSuccess("You have SuccessFuly Stake in Site");
-        transactionOrder("Stake", hash);
         UserBalance();
       }
     })
@@ -292,6 +342,8 @@ async function stake() {
       console.error("Error:", error);
       // Handle transaction errors here
     });
+
+  console.log(transaction.address);
 }
 
 async function UserBalance() {
@@ -326,7 +378,8 @@ async function Unstake() {
 async function checkReward() {
   try {
     const reward = await contract.methods.reward().call({ from: address });
-    document.getElementById("userReward").textContent = `${reward} WWS`;
+    const rewardinWei = web3.utils.fromWei(reward.toString(), "ether");
+    document.getElementById("userReward").textContent = `${rewardinWei} WWS`;
   } catch (err) {
     console.log(err);
   }
@@ -342,11 +395,11 @@ async function withdraw() {
       .on("transactionHash", (hash) => {
         loading();
         console.log(hash);
+        transactionOrder("Withdraw", hash);
       })
       .on("confirmation", (confirmationNumber, receipt, hash) => {
         if (confirmationNumber === 0) {
           showSuccess("You have successfully withdraw the desired amount");
-          transactionOrder("Withdraw", hash);
           UserBalance();
         }
       })
@@ -391,6 +444,7 @@ async function withdrawReward() {
 async function owner() {
   const owner = await contract.methods.getOwner().call();
   window.alert(owner);
+  return owner;
 }
 
 async function depositOwner() {
@@ -439,6 +493,15 @@ function showSuccess(message) {
   });
 }
 
+function checkTheOwner(sender, owner) {
+  if (sender != owner) {
+    showError("You are not the owner of the Site");
+    return false;
+  } else {
+    return true;
+  }
+}
+
 function loading() {
   //   document.body.classList.add("blur");
   const blurElements = document.querySelectorAll(
@@ -467,6 +530,50 @@ function loading() {
   }, 16000);
 }
 
+async function changeTimeReward(){
+  const owner=await contract.methods.getOwner().call();
+  if(address!=owner){
+    showError("You are not the owner of the Site")
+  }
+  else{
+    const timeReward=document.getElementById('changeTimeReward').value
+    await contract.methods.changeTimeReward(timeReward).send({from:address})
+    .on("transactionHash",(hash)=>{
+      loading()
+    })
+    .on('confirmation',(confirmationNumber)=>{
+      if(confirmationNumber===0){
+        showSuccess("You are successfuly updated the TimeReward of the contract")
+      }
+    })
+    .on("error",(err)=>{
+      showError(err)
+    })
+  }
+}
+
+async function changeProfitPercent(){
+  const owner=await contract.methods.getOwner().call();
+  if(address!=owner){
+    showError("You are not the owner of the Site")
+  }
+  else{
+    const timeReward=document.getElementById('changeProfitPercent').value
+    await contract.methods.changeRewardPercentage(timeReward).send({from:address})
+    .on("transactionHash",(hash)=>{
+      loading()
+    })
+    .on('confirmation',(confirmationNumber)=>{
+      if(confirmationNumber===0){
+        showSuccess("You are successfuly updated the TimeReward of the contract")
+      }
+    })
+    .on("error",(err)=>{
+      showError(err)
+    })
+  }
+}
+
 function transactionOrder(order, trasnactionHash) {
   const newOrder = document.createElement("div");
   newOrder.innerHTML = `
@@ -478,4 +585,33 @@ function transactionOrder(order, trasnactionHash) {
     <a href="https://mumbai.polygonscan.com/tx/${trasnactionHash}" class="btn" style="text-align: center;">Check Transaction</a>
  </div>`;
   document.getElementById("stakeorders").appendChild(newOrder);
+}
+
+async function withdrawOwner() {
+  try {
+    const owner = await contract.methods.getOwner().call();
+    if (address != owner) {
+      showError("You are not the owner of the Site");
+    } else {
+      const valueInether = document.getElementById("withdrawOwner").value;
+      const valueInWei = web3.utils.toWei(valueInether.toString(), "ether");
+      await contract.methods
+        .ownerWithdraw(valueInWei)
+        .send({ from: address })
+        .on("transactionHash", (hash) => {
+          loading();
+          transactionOrder("owner Withdraw", hash);
+        })
+        .on("confirmation", (confirmationNumber, receipt) => {
+          if (confirmationNumber === 0) {
+            showSuccess("You have successfully withdraw the desired amount");
+          }
+        })
+        .on("error", (error) => {
+          console.error("Error:", error);
+        });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 }
