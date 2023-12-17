@@ -552,6 +552,7 @@ async function changeTimeReward(){
   }
 }
 
+
 async function changeProfitPercent(){
   const owner=await contract.methods.getOwner().call();
   if(address!=owner){
