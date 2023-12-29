@@ -1,6 +1,6 @@
 const web3 = new Web3(window.ethereum);
 
-const contractAddress = "0x3101F92571BbDEDD52520B0A7Ed96467ADc1a9CB";
+const contractAddress = "0x27D0c4a98564274FD110AE954F4A8469d7cC105B";
 const contractAbi = [
   {
     inputs: [
@@ -530,48 +530,53 @@ function loading() {
   }, 16000);
 }
 
-async function changeTimeReward(){
-  const owner=await contract.methods.getOwner().call();
-  if(address!=owner){
-    showError("You are not the owner of the Site")
-  }
-  else{
-    const timeReward=document.getElementById('changeTimeReward').value
-    await contract.methods.changeTimeReward(timeReward).send({from:address})
-    .on("transactionHash",(hash)=>{
-      loading()
-    })
-    .on('confirmation',(confirmationNumber)=>{
-      if(confirmationNumber===0){
-        showSuccess("You are successfuly updated the TimeReward of the contract")
-      }
-    })
-    .on("error",(err)=>{
-      showError(err)
-    })
+async function changeTimeReward() {
+  const owner = await contract.methods.getOwner().call();
+  if (address != owner) {
+    showError("You are not the owner of the Site");
+  } else {
+    const timeReward = document.getElementById("changeTimeReward").value;
+    await contract.methods
+      .changeTimeReward(timeReward)
+      .send({ from: address })
+      .on("transactionHash", (hash) => {
+        loading();
+      })
+      .on("confirmation", (confirmationNumber) => {
+        if (confirmationNumber === 0) {
+          showSuccess(
+            "You are successfuly updated the TimeReward of the contract"
+          );
+        }
+      })
+      .on("error", (err) => {
+        showError(err);
+      });
   }
 }
 
-
-async function changeProfitPercent(){
-  const owner=await contract.methods.getOwner().call();
-  if(address!=owner){
-    showError("You are not the owner of the Site")
-  }
-  else{
-    const timeReward=document.getElementById('changeProfitPercent').value
-    await contract.methods.changeRewardPercentage(timeReward).send({from:address})
-    .on("transactionHash",(hash)=>{
-      loading()
-    })
-    .on('confirmation',(confirmationNumber)=>{
-      if(confirmationNumber===0){
-        showSuccess("You are successfuly updated the TimeReward of the contract")
-      }
-    })
-    .on("error",(err)=>{
-      showError(err)
-    })
+async function changeProfitPercent() {
+  const owner = await contract.methods.getOwner().call();
+  if (address != owner) {
+    showError("You are not the owner of the Site");
+  } else {
+    const timeReward = document.getElementById("changeProfitPercent").value;
+    await contract.methods
+      .changeRewardPercentage(timeReward)
+      .send({ from: address })
+      .on("transactionHash", (hash) => {
+        loading();
+      })
+      .on("confirmation", (confirmationNumber) => {
+        if (confirmationNumber === 0) {
+          showSuccess(
+            "You are successfuly updated the TimeReward of the contract"
+          );
+        }
+      })
+      .on("error", (err) => {
+        showError(err);
+      });
   }
 }
 
