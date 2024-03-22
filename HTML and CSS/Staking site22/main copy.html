@@ -1,0 +1,141 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stake Site</title>
+    <link rel="stylesheet" href="stakin.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      language="javascript"
+      src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  </head>
+
+  <body>
+    <!-- menu -->
+    <div class="main-menu">
+      <div class="title">
+        <img src="pictures/gem.png" id="logo" alt="" />
+        <h1 id="content">STAKING SITE</h1>
+      </div>
+      <div class="login-section">
+        <div>
+          <box-icon name="log-in" type="solid" style="color: white"></box-icon>
+          <button class="login-button" name="log-in">Login</button>
+        </div>
+        <!-- <i class="bx bx-menu-alt-right login-button" id="menu-icon">Login</i> -->
+      </div>
+      <div class="user-profile" style="display: none">
+        <!-- <img class="profile-image" src="user-profile-image.png" alt="User Profile Image"> -->
+        <div class="wallet-address">
+          Your Wallet Address: 0x1234567890abcdef
+        </div>
+      </div>
+    </div>
+    <!-- staking panel header -->
+    <div class="staking-header">
+      <div style="margin-left: 17%; color: gray;">
+        <h3>Token</h3>
+      </div>
+      <div style="display: flex; margin-right: 31%;color: gray; ">
+        <div>
+          <!-- <box-icon name='question-mark' style="background-color: gray; color: white;"></box-icon> -->
+          <h3 style="margin-right: 70px">Liquidity</h3>
+        </div>
+        <h3 style="margin-right: 70px">APR</h3>
+        <h3 style="margin-right: 70px">Reward</h3>
+        <h3 style="margin-right: 70px">Earned</h3>
+      </div>
+    </div>
+    <!-- staking panel -->
+    <div class="staking-panel">
+      <!-- panel details header  -->
+      <div
+        style="margin-top: 20px; display: flex; width: 100%; font-size: 20px"
+      >
+        <div style="display: flex; margin-left: 5%">
+          <!-- <img src="" alt="token-pic"> -->
+          <h3>Token Name</h3>
+        </div>
+        <div style="display: flex; margin-left: 25%">
+          <h4 style="margin-right: 150px">$ 56 M</h4>
+          <h4 style="margin-right: 130px">159.6 %</h4>
+          <h4 style="margin-right: 130px">$ 400 K</h4>
+          <h4
+            style="
+              margin-right: 130px;
+              font-size: 25px;
+              margin-top: 23px;
+              background-image: linear-gradient(to top right, #1be2ac, #baee34);
+              -webkit-background-clip: text;
+              color: transparent;
+            "
+          >
+            $ 2.6789
+          </h4>
+        </div>
+        <div>
+          <button class="stake-button">Stake Now</button>
+          <button
+            style="
+              background-color: #0f5657;
+              border: none;
+              cursor: pointer;
+              color: white;
+              width: 50px;
+            "
+          >
+            <box-icon name="chevron-up"></box-icon>
+          </button>
+        </div>
+      </div>
+      <hr
+        style="
+          width: 95%;
+          height: 1px; 
+          border: none;
+          background-color: #3EAEB0;
+          
+        "
+      />
+      <!-- deposit panel details  -->
+      <div style="display: grid;grid-template-columns: auto auto auto; margin-left: 3.5%;color: rgb(179, 179, 179); margin-top: 30px;">
+        <h2>Your deposit</h2>
+        <h2 style="margin-left: -43px;">Share</h2>
+        <h2>Earnings</h2>
+      </div>
+      <div style="display: grid;grid-template-columns: auto auto auto; margin-left: 3.5%;margin-top: -20px;">
+        <div style="display: grid; grid-template-columns: auto auto; width: 90%;">
+          <h1>24,567.7</h1>
+          <h4 style="margin-top: 38px; margin-left: -110px; color: rgb(179, 179, 179)">$204.67</h4>
+        </div>
+        <div style="display: grid; grid-template-columns: auto auto; width: 90%;">
+          <h1>0.000007</h1>
+          <h4 style="margin-top: 38px; margin-left: -110px; color: rgb(179, 179, 179)">%</h4>
+        </div>
+        <div style="display: grid; grid-template-columns: auto auto; width: 90%;">
+          <h1 style="background-image: linear-gradient(to top right, #1be2ac, #baee34);-webkit-background-clip: text;color: transparent;">2.6789</h1>
+          <h4 style="margin-top: 38px; margin-left: -110px; color: rgb(179, 179, 179)">$20.56</h4>
+        </div>
+      </div>
+
+      <div style="display: flex;margin-left: 3.5%; margin-top: 5%;">
+        <button class="glasses-button">Add Liquidity</button>
+        <button class="glasses-button" style="width: 50px;height: 50px;float: right;margin-left: 80%;font-size: larger;">...</button>
+      </div>
+    </div>
+  </body>
+
+  <script src="stake.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/spinkit@1.2.5/spinkit.min.css"
+  />
+</html>

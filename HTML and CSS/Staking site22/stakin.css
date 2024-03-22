@@ -1,7 +1,169 @@
 body {
-  background-color: rgb(1, 8, 47);
+  /* background-color: rgb(1, 8, 47); */
+  background-color: white;
   color: rgb(255, 255, 255);
 }
+
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+  margin-top: 2%;
+}
+
+.menu-content {
+  flex: 1;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.login-button {
+  padding: 8px 16px;
+  width: 200px;
+  height: 60px;
+  border: none;
+  border-radius: 4px;
+  background-image: linear-gradient(to top right, #5e38fc, #33c3ec);
+  font-size: 20px;
+  color: white;
+}
+
+.staking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+  margin-top: 2%;
+}
+
+.staking-panel{
+  height: 50%;
+  width: 70%;
+  background-color: #0F5657;
+  border-radius: 50px;
+  margin-left: 15%;
+  /* display: flex; */
+}
+
+.stake-button{
+  background-image: linear-gradient(to top right, #1BE2AC, #BAEE34);
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: 13px;
+  border: none;
+  
+}
+
+.glasses-button {
+  width: 150px;
+  height: 50px;
+  background-color: #336F70; /* Background color with increased transparency */
+  border: none;
+  border-radius: 10px; /* Adjust the value to control the curvature of the glasses */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.glasses-button::before,
+.glasses-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .dt1 {
   /* align-items: center; */
   margin-left: 10%;
@@ -225,14 +387,14 @@ body {
   font-size: 15px;
   margin-bottom: 10px;
   border-radius: 4px;
-  border: 2px solid transparent; 
+  border: 2px solid transparent;
   transition: border-color 0.3s ease-in-out;
 }
 .btn:hover {
   background-color: #3e3192;
   transition: 0.5s;
   box-shadow: 3px 5px 5px rgba(94, 21, 196, 0.842);
-  border-color: rgba(48, 167, 127, 0.712); 
+  border-color: rgba(48, 167, 127, 0.712);
   animation: rotate 3s linear infinite;
   color: white;
 }
@@ -269,16 +431,16 @@ body {
 .my-error-popup {
   /* color: rgb(43, 180, 151); */
   color: whitesmoke;
-  background-color: rgb(1, 8, 47); 
+  background-color: rgb(1, 8, 47);
 }
 
-.my-loading-popup{
+.my-loading-popup {
   filter: blur(0px);
   color: whitesmoke;
   background-color: rgb(1, 8, 47);
   border-radius: 7px;
 }
 
-.blur:not(.my-loading-popup){
-  filter: blur(5px); 
+.blur:not(.my-loading-popup) {
+  filter: blur(5px);
 }
