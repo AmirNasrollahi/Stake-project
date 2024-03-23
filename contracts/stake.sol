@@ -4,7 +4,7 @@ pragma solidity 0.8.20;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-error AlreadyStake(string errorMassage);
+
 library SafeMath {
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
         uint256 c = a + b;
@@ -67,28 +67,29 @@ library SafeMath {
         return a % b;
     }
 }
+event StakeEvent(address indexed user, uint256 amount);
+event UnstakeEvent(address indexed user, uint256 amount);
+event ClaimRewardEvent(address indexed user, uint256 amount);
 
-contract StakeCont is ReentrancyGuard {
+contract stakeContract is ReentrancyGuard {
     uint256 public timeReward;
     uint256 public rewardPercent;
     address payable public immutable owner;
     IERC20 public token;
-
     using SafeMath for uint256;
 
     struct StakeInfo {
-        address payable userAddress;
         uint256 amount;
         uint256 stakeTime;
     }
 
     mapping(address => StakeInfo) public Stake;
 
-    constructor(uint256 _timeReward, uint256 _rewardPercent,address _token) {
+    constructor(address _token,uint256 _timeReward, uint256 _rewardPercent) {
+        token=IERC20(_token);
         timeReward = _timeReward;
         rewardPercent = _rewardPercent;
         owner = payable(msg.sender);
-        token=IERC20(_token);
     }
 
     modifier onlyOwner() {
@@ -100,51 +101,32 @@ contract StakeCont is ReentrancyGuard {
         require(_amount != 0, "The minimum value error");
 
         if (Stake[msg.sender].amount != 0) {
-            revert AlreadyStake("You already stake please first unstake your balance");
+            revert("You have already staked please first unstake your last activity");
         } 
         else {
-            require(token.transferFrom(msg.sender,address(this),_amount),"Transfer failed");
+            require(token.balance(msg.sender)>=_amount,"You dont have enough token to stake");
+            require(token.allowance(msg.sender,address(this))>=_amount,"You dont have enough allowance to stake");
+            require(token.transferFrom(msg.sender, address(this), _amount), "Transaction Faild");
             Stake[msg.sender] = StakeInfo(
-                payable(msg.sender),
                 msg.value,
                 block.timestamp
             );
+            emit StakeEvent(msg.sender, _amount);
         }
     }
 
     function unSatke() public nonReentrant {
-        uint256 _dayReward = _dayRewardCalc(Stake[msg.sender].stakeTime);
-        uint256 _reward = (Stake[msg.sender].amount *
-            (rewardPercent * _dayReward)) / 100;
-        require(_dayReward != 0, "You cannot unStake at this time");
-        uint256 finalAmount=Stake[msg.sender].amount + _reward;
-        Stake[msg.sender].amount += _reward;
-        Stake[msg.sender].amount -= finalAmount;
+        withdrawReward();
+        uint256 userStakeAmount = Stake[msg.sender].amount;
+        Stake[msg.sender].amount =0;
         Stake[msg.sender].stakeTime = block.timestamp;
 
-        require(token.transferFrom(address(this),msg.sender,finalAmount),"Transfer failed");
-    }
-
-    function withdraw(uint256 _amount) public nonReentrant {
-        uint256 _dayReward = _dayRewardCalc(Stake[msg.sender].stakeTime);
-        uint256 _reward = (Stake[msg.sender].amount *
-            (_dayReward * rewardPercent)) / 100;
-        require(_amount != 0, "Amount must be gratter then zero");
-        require(
-            (Stake[msg.sender].amount + _reward) >= _amount,
-            "You dont have enough token in contract to withdraw"
-        );
-
-        Stake[msg.sender].amount += _reward;
-        Stake[msg.sender].amount -= _amount;
-        Stake[msg.sender].stakeTime = block.timestamp;
-
-        require(token.transferFrom(address(this),msg.sender,_amount),"Transfer failed");
+        require(token.balanceOf(address(this))>=userStakeAmount,"The Contract balance is not enough");
+        require(token.transfer(msg.sender, userStakeAmount),"Transaction Faild");
+        emit UnstakeEvent(msg.sender, userStakeAmount);
     }
 
     function reward() public view returns (uint256) {
-        uint256 stakeTime = (((Stake[msg.sender].stakeTime / 60) / 60) / 24);
-        uint256 realTime = (((block.timestamp  / 60) / 60) / 24);
         uint256 _dayReward = SafeMath.div((realTime - stakeTime), timeReward);
         uint256 _reward = (Stake[msg.sender].amount *
             (_dayReward * rewardPercent)) / 100;
@@ -164,13 +146,15 @@ contract StakeCont is ReentrancyGuard {
 
     function withdrawReward() public nonReentrant {
         uint256 _dayReward = _dayRewardCalc(Stake[msg.sender].stakeTime);
+        require(_dayReward != 0, "You cant withdraw your reward at this time");
         uint256 _reward = (Stake[msg.sender].amount *
             (_dayReward * rewardPercent)) / 100;
-        require(_dayReward != 0, "You cant withdraw your reward at this time");
 
         Stake[msg.sender].stakeTime = block.timestamp;
 
-        require(token.transferFrom(address(this),msg.sender,_reward),"Transfer failed");
+        require(token.balanceOf(address(this))>=_reward,"The Contract balance is not enough");
+        require(token.transfer(msg.sender, _reward),"Transaction Faild");
+        emit ClaimRewardEvent(msg.sender, _reward);
     }
 
     function changeTimeReward(uint256 _timeReward) public onlyOwner {
@@ -184,20 +168,18 @@ contract StakeCont is ReentrancyGuard {
     function ownerWithdraw(uint256 _amount) public onlyOwner {
         require(_amount != 0, "Amount must not be zero");
 
-        require(token.transferFrom(address(this),msg.sender,_amount));
+        require(token.balanceOf(address(this))>=_amount,"The Contract balance is not enough");
+        require(token.transfer(msg.sender, _amount),"Transaction Faild");
     }
 
-    function depositOwner() public onlyOwner payable{
-        require(msg.value != 0, "Amount must not be zero");
-    }
-
-    function getOwner() public view returns (address) {
-        return owner;
+    function depositOwner(uint256 _amount) public onlyOwner{
+        require(_amount != 0, "Amount must not be zero");
+        require(token.balance(msg.sender)>=_amount,"You dont have enough token to deposit");
+        require(token.allowance(msg.sender,address(this))>=_amount,"You dont have enough allowance to deposit");
+        require(token.transferFrom(msg.sender, address(this), _amount), "Transaction Faild");
     }
 
     function _dayRewardCalc(uint256 _stakeTime) public view returns (uint256) {
-        uint256 stakeTime = (((_stakeTime / 60) / 60) / 24);
-        uint256 realTime = (((block.timestamp  / 60) / 60) / 24);
         uint256 dayReward = SafeMath.div((realTime - stakeTime), timeReward);
 
         return dayReward;
