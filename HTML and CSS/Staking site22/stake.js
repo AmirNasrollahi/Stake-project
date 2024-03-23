@@ -295,18 +295,33 @@ async function connect() {
       const accounts = await web3.eth.getAccounts();
       address = accounts[0];
 
-      // const wallet = document.getElementById("wallet");
-      // wallet.style.color = "rgb(113, 210, 171)";
-      // wallet.textContent = address;
+      var shortAddress = shortenWalletAddress(address);
+      
+      document.getElementById("wallet-address").textContent = shortAddress;
+
 
       // UserBalance();
       // checkReward();
-      console.error('connected successfuly')
     } else {
     }
   } catch (error) {
     console.error("Error connecting to MetaMask:", error);
   }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var fullAddress = "0x8881860A5943685417eFf2b5370F7Eeb0c6873EC"; 
+
+  var shortAddress = shortenWalletAddress(fullAddress);
+
+  document.getElementById("wallet-address").textContent = shortAddress;
+});
+
+function shortenWalletAddress(address) {
+  var length = address.length;
+  var firstPart = address.slice(0, 6);
+  var lastPart = address.slice(length - 4, length);
+  return firstPart + "..." + lastPart;
 }
 
 async function disconnect() {
