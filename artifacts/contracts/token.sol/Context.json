@@ -1,0 +1,16 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Context",
+  "sourceName": "contracts/token.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x6080604052348015600e575f80fd5b50603e80601a5f395ff3fe60806040525f80fdfea26469706673582212209a3ab75cc2fab3a856a8e3c3fe2cb2489afdd4a8f14a18ddbb4d394d11b0072264736f6c63430008140033",
+  "deployedBytecode": "0x60806040525f80fdfea26469706673582212209a3ab75cc2fab3a856a8e3c3fe2cb2489afdd4a8f14a18ddbb4d394d11b0072264736f6c63430008140033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
