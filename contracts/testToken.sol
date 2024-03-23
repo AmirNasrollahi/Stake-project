@@ -319,7 +319,7 @@ contract TSTstake is Context, IBEP20, Ownable {
 
   constructor() public {
     _name = "test token";
-    _symbol = "MVT";
+    _symbol = "ANS";
     _decimals = 18;
     _totalSupply =10*10**18;
     _balances[msg.sender] = _totalSupply;

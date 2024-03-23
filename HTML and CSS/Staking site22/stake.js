@@ -295,12 +295,13 @@ async function connect() {
       const accounts = await web3.eth.getAccounts();
       address = accounts[0];
 
-      const wallet = document.getElementById("wallet");
-      wallet.style.color = "rgb(113, 210, 171)";
-      wallet.textContent = address;
+      // const wallet = document.getElementById("wallet");
+      // wallet.style.color = "rgb(113, 210, 171)";
+      // wallet.textContent = address;
 
-      UserBalance();
-      checkReward();
+      // UserBalance();
+      // checkReward();
+      console.error('connected successfuly')
     } else {
     }
   } catch (error) {
