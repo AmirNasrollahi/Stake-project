@@ -65,9 +65,9 @@ body {
 .glasses-button {
   width: 150px;
   height: 50px;
-  background-color: #336f70; 
+  background-color: #336f70;
   border: none;
-  border-radius: 10px; 
+  border-radius: 10px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -110,7 +110,7 @@ body {
   margin-left: 100px;
   justify-content: center;
 }
-.hover-button:hover{
+.hover-button:hover {
   transition: opacity 0.1s ease-out;
 }
 .dropdown-content {
@@ -118,7 +118,7 @@ body {
   position: absolute;
   top: 0;
   min-width: 140px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 10px;
   background-color: #232425;
@@ -143,46 +143,40 @@ body {
   color: transparent; */
 }
 
-
 .button-container:hover .dropdown-content {
   display: block;
 }
 
+.user-wallet {
+  display: flex;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  /* background-color: white; */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 45%;
+}
 
+.user-info h2 {
+  margin-bottom: 8px;
+}
 
+.user-info p {
+  margin: 0;
+  font-size: 16px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.wallet-icon {
+  background-image: linear-gradient(to top right, #8231e2, #de6b88);
+  width: 44px;
+  height: 35px;
+  border-radius: 15px;
+  margin-top: 25px;
+  margin-right: 15px;
+}
 
 
 
