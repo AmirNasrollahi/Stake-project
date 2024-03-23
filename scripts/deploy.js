@@ -9,14 +9,17 @@ const {ethers} = require("hardhat");
 async function main() {
   //................get the contract...................
   const stakeContract=await ethers.getContractFactory("stakeContract");
-  // const ANSTokenContrcat=await ethers.getContractFactory("ANSToken")
-  //................deploy the contract...................
+  const ANSTokenContrcat=await ethers.getContractFactory("ANSToken")
   console.log("deploying contracts...");
-  const Stake=await stakeContract.deploy('0x3b6B3F042A505910aa619730617D4CEacDABe3c1',1800,15);
-  // const ANSToken=await ANSTokenContrcat.deploy();
+  // ................deploy the token contract...................
+  const ANSToken=await ANSTokenContrcat.deploy();
+  //................wait to contract deploy...................
+  await ANSToken.deployed();
+  console.log(`ANSToken deployed to:${ANSToken.address}`);
+  // ................deploy the stake contract...................
+  const Stake=await stakeContract.deploy(`${ANSToken.address}`,1800,15);
   //................wait to contract deploy...................
   await Stake.deployed();
-  // console.log(`stake contract deployed to:${Stake.address}`);
   console.log(`stake contract deployed to:${Stake.address}`);
 }
 
