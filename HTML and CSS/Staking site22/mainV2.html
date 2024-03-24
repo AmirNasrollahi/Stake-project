@@ -10,11 +10,11 @@
       language="javascript"
       src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"
     ></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
     />
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   </head>
 
   <body>
@@ -81,7 +81,7 @@
           </h4>
         </div>
         <div>
-          <button class="stake-button">Stake Now</button>
+          <button class="stake-button" onclick="stake()">Stake Now</button>
           <button
             style="
               background-color: #0f5657;
@@ -167,9 +167,10 @@
         <p id="wallet-address">0xpdhfh...kfpk</p>
       </div>
     </div>
+    <button onclick="approveContract()">approve</button>
   </body>
 
-  <script src="stake.js"></script>
+  <script src="./stake.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link
     rel="stylesheet"

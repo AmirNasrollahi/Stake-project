@@ -1,7 +1,497 @@
 const web3 = new Web3(window.ethereum);
 
-const contractAddress = "0x27D0c4a98564274FD110AE954F4A8469d7cC105B";
-const contractAbi = [
+const TOKEN_CONTRACT_ADDRESS = "0x3b6B3F042A505910aa619730617D4CEacDABe3c1";
+const TOKEN_CONTRACT_ABI = [
+  {
+    inputs: [],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "Approval",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "previousOwner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+    ],
+    name: "allowance",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "approve",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+    ],
+    name: "balanceOf",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "decimals",
+    outputs: [
+      {
+        internalType: "uint8",
+        name: "",
+        type: "uint8",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "subtractedValue",
+        type: "uint256",
+      },
+    ],
+    name: "decreaseAllowance",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getOwner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "addedValue",
+        type: "uint256",
+      },
+    ],
+    name: "increaseAllowance",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "mint",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "symbol",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "recipient",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "transfer",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "recipient",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "transferFrom",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+];
+const TOKEN_DECIAML = 6;
+
+const STAKE_CONTRACT_ADDRESS = "0xF0823F1F9375aA02EA0a6e2f68824E3ec08C7246";
+const STAKE_CONTRACT_ABI = [
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_token",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_timeReward",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_rewardPercent",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [],
+    name: "ReentrancyGuardReentrantCall",
+    type: "error",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "user",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "ClaimRewardEvent",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "user",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "StakeEvent",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "user",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "UnstakeEvent",
+    type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "Stake",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "stakeTime",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_stakeTime",
+        type: "uint256",
+      },
+    ],
+    name: "_dayRewardCalc",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
   {
     inputs: [
       {
@@ -29,97 +519,16 @@ const contractAbi = [
     type: "function",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
     name: "depositOwner",
     outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-    ],
-    name: "ownerWithdraw",
-    outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_timeReward",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_rewardPercent",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor",
-  },
-  {
-    inputs: [],
-    name: "ReentrancyGuardReentrantCall",
-    type: "error",
-  },
-  {
-    inputs: [],
-    name: "stake",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "unSatke",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-    ],
-    name: "withdraw",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "withdrawReward",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_stakeTime",
-        type: "uint256",
-      },
-    ],
-    name: "_dayRewardCalc",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {
@@ -137,19 +546,6 @@ const contractAbi = [
   },
   {
     inputs: [],
-    name: "getOwner",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "owner",
     outputs: [
       {
@@ -159,6 +555,19 @@ const contractAbi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
+    name: "ownerWithdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -190,30 +599,14 @@ const contractAbi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    name: "Stake",
-    outputs: [
-      {
-        internalType: "address payable",
-        name: "userAddress",
-        type: "address",
-      },
-      {
         internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "stakeTime",
+        name: "_amount",
         type: "uint256",
       },
     ],
-    stateMutability: "view",
+    name: "stake",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -229,8 +622,43 @@ const contractAbi = [
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [],
+    name: "token",
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "unSatke",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "withdrawReward",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
-const contract = new web3.eth.Contract(contractAbi, contractAddress);
+
+const stakeContract = new web3.eth.Contract(
+  STAKE_CONTRACT_ABI,
+  STAKE_CONTRACT_ADDRESS
+);
+const tokenContract = new web3.eth.Contract(
+  TOKEN_CONTRACT_ABI,
+  TOKEN_CONTRACT_ADDRESS
+);
 var address;
 
 // async function approveContract(amount) {
@@ -283,9 +711,9 @@ var address;
 //   console.log(transaction.address);
 // }
 
-function getContractAddress() {
-  return contractAddress;
-}
+// function getContractAddress() {
+//   return contractAddress;
+// }
 
 async function connect() {
   try {
@@ -296,9 +724,8 @@ async function connect() {
       address = accounts[0];
 
       var shortAddress = shortenWalletAddress(address);
-      
-      document.getElementById("wallet-address").textContent = shortAddress;
 
+      document.getElementById("wallet-address").textContent = shortAddress;
 
       // UserBalance();
       // checkReward();
@@ -309,8 +736,8 @@ async function connect() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  var fullAddress = "0x8881860A5943685417eFf2b5370F7Eeb0c6873EC"; 
+document.addEventListener("DOMContentLoaded", function () {
+  var fullAddress = "0x8881860A5943685417eFf2b5370F7Eeb0c6873EC";
 
   var shortAddress = shortenWalletAddress(fullAddress);
 
@@ -337,26 +764,24 @@ async function disconnect() {
 }
 
 async function stake() {
-  const etherValue = 0.1;
-  const valueInWei = web3.utils.toWei(etherValue.toString(), "ether");
-  //   const valueInFinney = web3.utils.fromWei(valueInWei, "finney");
-  const transaction = await contract.methods
-    .stake()
-    .send({ from: address, value: valueInWei })
+  const amount=10
+  const stakeAmount=amount*10**TOKEN_DECIAML;
+  await approveContract(amount);
+  const transaction = await stakeContract.methods
+    .stake(stakeAmount)
+    .send({ from: address })
     .on("transactionHash", (hash) => {
       loading();
       console.log("Transaction Hash:", hash);
-      transactionOrder("Stake", hash);
     })
     .on("confirmation", (confirmationNumber, receipt, hash) => {
       if (confirmationNumber === 0) {
         showSuccess("You have SuccessFuly Stake in Site");
-        UserBalance();
       }
     })
     .on("error", (error) => {
       console.error("Error:", error);
-      // Handle transaction errors here
+      showError(error.message);
     });
 
   console.log(transaction.address);
@@ -493,7 +918,6 @@ function showError(message) {
     text: message,
     customClass: {
       popup: "my-error-popup",
-      //   class:my-error-popup
     },
   });
 }
@@ -635,5 +1059,32 @@ async function withdrawOwner() {
     }
   } catch (err) {
     console.log(err);
+  }
+}
+
+
+async function approveContract(amount) {
+  const approveAmount = amount * 10 ** TOKEN_DECIAML;
+
+  if (address) {
+    await tokenContract.methods
+      .approve(STAKE_CONTRACT_ADDRESS,approveAmount)
+      .send({ from: address })
+      .on("transactionHash", (hash) => {
+        loading();
+        console.log("Transaction Hash:", hash);
+      })
+      .on("confirmation", (confirmationNumber, receipt, hash) => {
+        if (confirmationNumber === 0) {
+          showSuccess("You have SuccessFuly approved the contract");
+        }
+      })
+      .on("error", (err) => {
+        console.error("Error:", err);
+        showError(err);
+      });
+  } else {
+    // console.error("Error:", error);
+    showError("Please connect your wallet");
   }
 }
