@@ -661,60 +661,6 @@ const tokenContract = new web3.eth.Contract(
 );
 var address;
 
-// async function approveContract(amount) {
-//   const etherValue = 1000000000000000000;
-//   const valueInether = web3.utils.fromWei(etherValue.toString(), "ether");
-
-//   await contract.methods
-//     .approveContract(valueInether)
-//     .send({ from: address })
-//     .on("transactionHash", (hash) => {
-//       loading();
-//       console.log("Transaction Hash:", hash);
-//       transactionOrder("Stake", hash);
-//     })
-//     .on("confirmation", (confirmationNumber, receipt, hash) => {
-//       if (confirmationNumber === 0) {
-//         showSuccess("You have SuccessFuly Stake in Site");
-//         UserBalance();
-//       }
-//     })
-//     .on("error", (error) => {
-//       console.error("Error:", error);
-//       // Handle transaction errors here
-//     });
-// }
-
-// async function stakeV2() {
-//   const etherValue = 1000000000000000000;
-//   const valueInether = web3.utils.fromWei(etherValue.toString(), "ether");
-//   //   const valueInFinney = web3.utils.fromWei(valueInWei, "finney");
-//   const transaction = await contract.methods
-//     .stake(valueInether)
-//     .send({ from: address})
-//     .on("transactionHash", (hash) => {
-//       loading();
-//       console.log("Transaction Hash:", hash);
-//       transactionOrder("Stake", hash);
-//     })
-//     .on("confirmation", (confirmationNumber, receipt, hash) => {
-//       if (confirmationNumber === 0) {
-//         showSuccess("You have SuccessFuly Stake in Site");
-//         UserBalance();
-//       }
-//     })
-//     .on("error", (error) => {
-//       console.error("Error:", error);
-//       // Handle transaction errors here
-//     });
-
-//   console.log(transaction.address);
-// }
-
-// function getContractAddress() {
-//   return contractAddress;
-// }
-
 async function connect() {
   try {
     if (window.ethereum) {
@@ -727,8 +673,9 @@ async function connect() {
 
       document.getElementById("wallet-address").textContent = shortAddress;
 
-      // UserBalance();
-      // checkReward();
+      UserBalance();
+      checkReward();
+      calculateAPR();
     } else {
     }
   } catch (error) {
@@ -788,16 +735,31 @@ async function stake() {
 }
 
 async function UserBalance() {
-  const userBalance = await contract.methods
-    .getBalance()
+  const userBalance = await stakeContract.methods
+    .Stake(address)
     .call({ from: address });
-  const userBalanceInWei = web3.utils.fromWei(userBalance, "ether");
+  console.log(userBalance)
   const userBalanceTag = document.getElementById("userBalance");
-  userBalanceTag.textContent = `${userBalanceInWei} WWS`;
+  userBalanceTag.textContent = `${userBalance.amount/10**TOKEN_DECIAML} ANS`;
+}
+
+async function calculateAPR(){
+  try{
+    const userBalance = await stakeContract.methods
+    .Stake(address)
+    .call({ from: address });
+
+    const userBalanceWithReward=await stakeContract.methods.getBalance().call({from:address})
+
+    document.getElementById('APR-percent').textContent=`${(userBalanceWithReward*100)/userBalance.amount} %`
+  }
+  catch(err){
+    showError(err)
+  }
 }
 
 async function Unstake() {
-  await contract.methods
+  await stakeContract.methods
     .unSatke()
     .send({ from: address })
     .on("transactionHash", (hash) => {
@@ -818,9 +780,9 @@ async function Unstake() {
 
 async function checkReward() {
   try {
-    const reward = await contract.methods.reward().call({ from: address });
-    const rewardinWei = web3.utils.fromWei(reward.toString(), "ether");
-    document.getElementById("userReward").textContent = `${rewardinWei} WWS`;
+    const reward = await stakeContract.methods.reward().call({ from: address , gas: 500000});
+
+    document.getElementById("userReward").textContent = `${reward/10**TOKEN_DECIAML} ANS`;
   } catch (err) {
     console.log(err);
   }
@@ -854,16 +816,16 @@ async function withdraw() {
 
 async function withdrawReward() {
   try {
-    await contract.methods
+    await stakeContract.methods
       .withdrawReward()
-      .call({ from: address })
+      .send({ from: address })
       .on("transactionHash", (hash) => {
         loading();
         console.log(hash);
       })
       .on("confirmation", (confirmationNumber, receipt) => {
         if (confirmationNumber === 0) {
-          showSuccess("You have successfully withdrawn your profit");
+          showSuccess("You have successfully withdrawn your reward");
           checkReward();
         }
       })
@@ -872,9 +834,9 @@ async function withdrawReward() {
 
         if (err.message.includes("execution reverted")) {
           const errorMessage = "You can't withdraw your reward at this time";
-          window.alert(errorMessage);
+          showError(errorMessage)
         } else {
-          console.error("Unhandled error:", err);
+          showError("Unhandled error:", err);
         }
       });
   } catch (err) {

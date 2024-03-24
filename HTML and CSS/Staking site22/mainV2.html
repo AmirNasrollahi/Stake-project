@@ -43,7 +43,7 @@
       <div style="margin-left: 19%; color: gray;">
         <h3>Token</h3>
       </div>
-      <div style="display: flex; margin-right: 31%;color: gray; ">
+      <div style="display: flex; margin-right: 35%;color: gray; ">
         <div>
           <!-- <box-icon name='question-mark' style="background-color: gray; color: white;"></box-icon> -->
           <h3 style="margin-right: 70px">Liquidity</h3>
@@ -65,8 +65,8 @@
         </div>
         <div style="display: flex; margin-left: 25%">
           <h4 style="margin-right: 150px">$ 56 M</h4>
-          <h4 style="margin-right: 130px">159.6 %</h4>
-          <h4 style="margin-right: 130px">$ 400 K</h4>
+          <h4 style="margin-right: 130px" id="APR-percent">159.6 %</h4>
+          <h4 style="margin-right: 130px" id="userReward">$ 400 K</h4>
           <h4
             style="
               margin-right: 130px;
@@ -112,7 +112,7 @@
       </div>
       <div style="display: grid;grid-template-columns: auto auto auto; margin-left: 3.5%;margin-top: -20px;">
         <div style="display: grid; grid-template-columns: auto auto; width: 90%;">
-          <h1>24,567.7</h1>
+          <h1 id="userBalance">24,567.7</h1>
           <h4 style="margin-top: 38px; margin-left: -110px; color: rgb(179, 179, 179)">$204.67</h4>
         </div>
         <div style="display: grid; grid-template-columns: auto auto; width: 90%;">
@@ -134,8 +134,8 @@
             <!-- <a href="#">Option 1</a>
             <a href="#">Option 2</a>
             <a href="#">Option 3</a> -->
-            <button class="dropdown-button">Claim Reward</button>
-            <button class="dropdown-button">Unstake</button>
+            <button class="dropdown-button" onclick="withdrawReward()">Claim Reward</button>
+            <button class="dropdown-button" onclick="Unstake()">Unstake</button>
             <button class="dropdown-button" onclick="window.location.href='https://mumbai.polygonscan.com/address/0xf0823f1f9375aa02ea0a6e2f68824e3ec08c7246'">Contract</button>
           </div>
         </div>
@@ -167,7 +167,6 @@
         <p id="wallet-address">0xpdhfh...kfpk</p>
       </div>
     </div>
-    <button onclick="approveContract()">approve</button>
   </body>
 
   <script src="./stake.js"></script>
