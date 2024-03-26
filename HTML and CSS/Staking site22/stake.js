@@ -794,32 +794,6 @@ async function checkReward() {
   }
 }
 
-async function withdraw() {
-  try {
-    const etherAmount = document.getElementById("amountWithdraw").value;
-    const weiAmount = web3.utils.toWei(etherAmount.toString(), "ether");
-    await contract.methods
-      .withdraw(weiAmount)
-      .send({ from: address })
-      .on("transactionHash", (hash) => {
-        loading();
-        console.log(hash);
-        transactionOrder("Withdraw", hash);
-      })
-      .on("confirmation", (confirmationNumber, receipt, hash) => {
-        if (confirmationNumber === 0) {
-          showSuccess("You have successfully withdraw the desired amount");
-          UserBalance();
-        }
-      })
-      .on("error", (error) => {
-        console.error("Error:", error);
-      });
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 async function withdrawReward() {
   try {
     await stakeContract.methods
