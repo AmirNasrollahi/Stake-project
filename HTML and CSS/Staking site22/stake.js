@@ -676,6 +676,13 @@ async function connect() {
       UserBalance();
       checkReward();
       calculateAPR();
+
+      document.getElementById('connect-button').style.display='none'
+      document.getElementById('user-wallet').style.display='flex'
+
+      let userTokenBalance=await tokenContract.methods.balanceOf(address).call({from:address})
+      userTokenBalance=userTokenBalance/10**TOKEN_DECIAML
+      document.getElementById('user-balance').textContent=`${userTokenBalance} ANS`
     } else {
     }
   } catch (error) {
@@ -725,6 +732,10 @@ async function stake() {
     .on("confirmation", (confirmationNumber, receipt, hash) => {
       if (confirmationNumber === 0) {
         showSuccess("You have SuccessFuly Stake in Site");
+        
+        UserBalance();
+        checkReward();
+        calculateAPR();
       }
     })
     .on("error", (error) => {
@@ -739,7 +750,6 @@ async function UserBalance() {
   const userBalance = await stakeContract.methods
     .Stake(address)
     .call({ from: address });
-  console.log(userBalance)
   const userBalanceTag = document.getElementById("userBalance");
   userBalanceTag.textContent = `${userBalance.amount/10**TOKEN_DECIAML} ANS`;
 }

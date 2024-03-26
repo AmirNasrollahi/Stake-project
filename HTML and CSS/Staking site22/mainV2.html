@@ -27,7 +27,7 @@
       <div class="login-section">
         <div>
           <box-icon name="log-in" type="solid" style="color: white"></box-icon>
-          <button class="login-button" name="log-in" onclick="connect()">Login</button>
+          <button class="login-button" name="log-in" onclick="connect()" id="connect-button">Connect wallet</button>
         </div>
         <!-- <i class="bx bx-menu-alt-right login-button" id="menu-icon">Login</i> -->
       </div>
@@ -159,11 +159,11 @@
       </div>
     </div>
 
-    <div class="user-wallet">
+    <div class="user-wallet" id="user-wallet">
 
       <box-icon  name='wallet' class="wallet-icon"></box-icon>
       <div>
-        <p>10000 ETH</p>
+        <p id="user-balance">10000 ETH</p>
         <p id="wallet-address">0xpdhfh...kfpk</p>
       </div>
     </div>

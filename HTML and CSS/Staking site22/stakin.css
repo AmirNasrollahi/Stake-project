@@ -31,6 +31,7 @@ body {
   background-image: linear-gradient(to top right, #5e38fc, #33c3ec);
   font-size: 20px;
   color: white;
+  margin-right: 3%;
 }
 
 .staking-header {
@@ -149,16 +150,15 @@ body {
 }
 
 .user-wallet {
-  display: flex;
+  display: none;
   position: fixed;
   top: 20px;
   left: 20px;
-  /* background-color: white; */
   color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-left: 45%;
+  margin-left: 85%;
 }
 
 .user-info h2 {
