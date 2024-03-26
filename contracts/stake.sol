@@ -117,14 +117,16 @@ contract stakeContract is ReentrancyGuard {
     }
 
     function unSatke() public nonReentrant {
-        withdrawReward();
-        uint256 userStakeAmount = Stake[msg.sender].amount;
+        uint256 _dayReward = _dayRewardCalc(Stake[msg.sender].stakeTime);
+        uint256 _reward = (Stake[msg.sender].amount *
+            (_dayReward * rewardPercent)) / 100;
+        uint256 transferAmount = Stake[msg.sender].amount+_reward;
         Stake[msg.sender].amount =0;
         Stake[msg.sender].stakeTime = block.timestamp;
 
-        require(token.balanceOf(address(this))>=userStakeAmount,"The Contract balance is not enough");
-        require(token.transfer(msg.sender, userStakeAmount),"Transaction Faild");
-        emit UnstakeEvent(msg.sender, userStakeAmount);
+        require(token.balanceOf(address(this))>=transferAmount,"The Contract balance is not enough");
+        require(token.transfer(msg.sender, transferAmount),"Transaction Faild");
+        emit UnstakeEvent(msg.sender, transferAmount);
     }
 
     function reward() public view returns (uint256) {
