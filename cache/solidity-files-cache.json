@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\block chain\\Projects\\Stake-project\\contracts\\stake.sol": {
-      "lastModificationDate": 1711218925987,
-      "contentHash": "a3a3ca3d7f5ea58c54da9dc114e02c75",
+      "lastModificationDate": 1711434407399,
+      "contentHash": "03450df7c0fe0af61d0a4a1e0f8dbd75",
       "sourceName": "contracts/stake.sol",
       "solcConfig": {
         "version": "0.8.20",

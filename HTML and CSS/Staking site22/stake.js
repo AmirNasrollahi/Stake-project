@@ -364,292 +364,292 @@ const TOKEN_CONTRACT_ABI = [
 ];
 const TOKEN_DECIAML = 6;
 
-const STAKE_CONTRACT_ADDRESS = "0xF0823F1F9375aA02EA0a6e2f68824E3ec08C7246";
+const STAKE_CONTRACT_ADDRESS = "0xb24D456804189cf62cd319b69E5934F795D78CAF";
 const STAKE_CONTRACT_ABI = [
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "address",
-        name: "_token",
-        type: "address",
+        "internalType": "address",
+        "name": "_token",
+        "type": "address"
       },
       {
-        internalType: "uint256",
-        name: "_timeReward",
-        type: "uint256",
+        "internalType": "uint256",
+        "name": "_timeReward",
+        "type": "uint256"
       },
       {
-        internalType: "uint256",
-        name: "_rewardPercent",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_rewardPercent",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "nonpayable",
-    type: "constructor",
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    inputs: [],
-    name: "ReentrancyGuardReentrantCall",
-    type: "error",
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
     ],
-    name: "ClaimRewardEvent",
-    type: "event",
+    "name": "ClaimRewardEvent",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
     ],
-    name: "StakeEvent",
-    type: "event",
+    "name": "StakeEvent",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "user",
-        type: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
     ],
-    name: "UnstakeEvent",
-    type: "event",
+    "name": "UnstakeEvent",
+    "type": "event"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
     ],
-    name: "Stake",
-    outputs: [
+    "name": "Stake",
+    "outputs": [
       {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       },
       {
-        internalType: "uint256",
-        name: "stakeTime",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "stakeTime",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "uint256",
-        name: "_stakeTime",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_stakeTime",
+        "type": "uint256"
+      }
     ],
-    name: "_dayRewardCalc",
-    outputs: [
+    "name": "_dayRewardCalc",
+    "outputs": [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "uint256",
-        name: "_rewardPercent",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_rewardPercent",
+        "type": "uint256"
+      }
     ],
-    name: "changeRewardPercentage",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "name": "changeRewardPercentage",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "uint256",
-        name: "_timeReward",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_timeReward",
+        "type": "uint256"
+      }
     ],
-    name: "changeTimeReward",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "name": "changeTimeReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
     ],
-    name: "depositOwner",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "name": "depositOwner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "getBalance",
-    outputs: [
+    "inputs": [],
+    "name": "getBalance",
+    "outputs": [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "owner",
-    outputs: [
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
       {
-        internalType: "address payable",
-        name: "",
-        type: "address",
-      },
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
     ],
-    name: "ownerWithdraw",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "name": "ownerWithdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "reward",
-    outputs: [
+    "inputs": [],
+    "name": "reward",
+    "outputs": [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "rewardPercent",
-    outputs: [
+    "inputs": [],
+    "name": "rewardPercent",
+    "outputs": [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
     ],
-    name: "stake",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "name": "stake",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "timeReward",
-    outputs: [
+    "inputs": [],
+    "name": "timeReward",
+    "outputs": [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "token",
-    outputs: [
+    "inputs": [],
+    "name": "token",
+    "outputs": [
       {
-        internalType: "contract IERC20",
-        name: "",
-        type: "address",
-      },
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "unSatke",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "inputs": [],
+    "name": "unSatke",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "withdrawReward",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-];
+    "inputs": [],
+    "name": "withdrawReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
 
 const stakeContract = new web3.eth.Contract(
   STAKE_CONTRACT_ABI,
@@ -713,8 +713,9 @@ async function disconnect() {
 async function stake() {
   const amount=10
   const stakeAmount=amount*10**TOKEN_DECIAML;
-  await approveContract(amount);
-  const transaction = await stakeContract.methods
+  const approveResult=await approveContract(amount);
+  if(approveResult){
+    const stakeTransaction = await stakeContract.methods
     .stake(stakeAmount)
     .send({ from: address })
     .on("transactionHash", (hash) => {
@@ -730,8 +731,8 @@ async function stake() {
       console.error("Error:", error);
       showError(error.message);
     });
-
-  console.log(transaction.address);
+    console.log(stakeTransaction.address);
+  }
 }
 
 async function UserBalance() {
@@ -759,13 +760,14 @@ async function calculateAPR(){
 }
 
 async function Unstake() {
-  await stakeContract.methods
+  try{
+    await stakeContract.methods
     .unSatke()
     .send({ from: address })
     .on("transactionHash", (hash) => {
       loading();
       console.log(hash);
-      userBalance();
+      UserBalance();
     })
     .on("confirmation", (confirmationNumber, receipt) => {
       if (confirmationNumber === 0) {
@@ -776,6 +778,10 @@ async function Unstake() {
     .on("error", (err) => {
       console.log(err.message);
     });
+  }
+  catch(err){
+    showError(err)
+  }
 }
 
 async function checkReward() {
@@ -1027,7 +1033,7 @@ async function withdrawOwner() {
 
 async function approveContract(amount) {
   const approveAmount = amount * 10 ** TOKEN_DECIAML;
-
+  let isSuccessed=true
   if (address) {
     await tokenContract.methods
       .approve(STAKE_CONTRACT_ADDRESS,approveAmount)
@@ -1035,18 +1041,32 @@ async function approveContract(amount) {
       .on("transactionHash", (hash) => {
         loading();
         console.log("Transaction Hash:", hash);
+        isSuccessed=true
       })
       .on("confirmation", (confirmationNumber, receipt, hash) => {
         if (confirmationNumber === 0) {
           showSuccess("You have SuccessFuly approved the contract");
+          isSuccessed=true
         }
       })
       .on("error", (err) => {
         console.error("Error:", err);
         showError(err);
+        isSuccessed=false
       });
   } else {
     // console.error("Error:", error);
     showError("Please connect your wallet");
+    isSuccessed=false
+  }
+  return isSuccessed
+}
+
+async function redirectToContract(){
+  try{
+    window.location.href=`https://mumbai.polygonscan.com/address/${STAKE_CONTRACT_ADDRESS}`
+  }
+  catch(err){
+    console.log(err)
   }
 }
