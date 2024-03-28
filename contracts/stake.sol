@@ -116,7 +116,7 @@ contract stakeContract is ReentrancyGuard {
         }
     }
 
-    function unSatke() public nonReentrant {
+    function unStake() public nonReentrant {
         uint256 _dayReward = _dayRewardCalc(Stake[msg.sender].stakeTime);
         uint256 _reward = (Stake[msg.sender].amount *
             (_dayReward * rewardPercent)) / 100;

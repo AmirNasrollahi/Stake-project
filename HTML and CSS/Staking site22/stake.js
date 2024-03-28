@@ -772,11 +772,10 @@ async function calculateAPR(){
 async function Unstake() {
   try{
     await stakeContract.methods
-    .unSatke()
+    .unStake()
     .send({ from: address })
     .on("transactionHash", (hash) => {
       loading();
-      console.log(hash);
       UserBalance();
     })
     .on("confirmation", (confirmationNumber, receipt) => {
