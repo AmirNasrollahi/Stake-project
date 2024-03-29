@@ -2,6 +2,7 @@ body {
   /* background-color: rgb(1, 8, 47); */
   background-color: white;
   color: rgb(255, 255, 255);
+  font-family: serif;
 }
 
 .main-menu {
@@ -179,24 +180,53 @@ body {
   margin-right: 15px;
 }
 
+.dashboard-btn {
+  width: 150px;
+  height: 40px;
+  background-color: #232425;
+  border: none;
+  color: white;
+  border-radius: 10px 0px 0px 10px;
+  font-size: large;
+  transition: 0.5s;
+}
 
+.dashboard-btn2{
+  width: 150px;
+  height: 40px;
+  background-color: #232425;
+  border: none;
+  color: white;
+  font-size: large;
+  transition: 0.5s;
+}
 
+.dashboard-btn3{
+  width: 150px;
+  height: 40px;
+  background-color: #232425;
+  border: none;
+  color: white;
+  border-radius: 0px 10px 10px 0px;
+  font-size: large;
+  transition: 0.5s;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.dashboard-btn:hover{
+  background-color: white;
+  color:#232425;
+  border-radius: 10px 10px 10px 10px;
+}
+.dashboard-btn2:hover{
+  background-color: white;
+  color:#232425;
+  border-radius: 10px 10px 10px 10px;
+}
+.dashboard-btn3:hover{
+  background-color: white;
+  color:#232425;
+  border-radius: 10px 10px 10px 10px;
+}
 .dt1 {
   /* align-items: center; */
   margin-left: 10%;
