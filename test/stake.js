@@ -118,5 +118,29 @@ describe("stake",function (){
             // check the user balance with reward
             expect(await stakeContract.connect(firstUser).getBalance()).to.equal(stakeAmount+expectedReward)
         })
+
+        it("should desposit in the contract with owner account",async function(){
+            const {stakeContract,tokenContract,owner} =await deployContracts()
+            const depositAmount=10000000
+            // approve the stake contract to spend 10 ANS Token
+            await tokenContract.connect(owner).approve(stakeContract.address,BigInt(depositAmount))
+            // deposit 10 ANS
+            await stakeContract.connect(owner).depositOwner(depositAmount)
+            // check the contract balance
+            expect(await tokenContract.balanceOf(stakeContract.address)).to.equal(depositAmount)
+        })
+
+        it("should owner can withdraw from the contract",async function(){
+            const {stakeContract,tokenContract,owner} =await deployContracts()
+            const depositAmount=10000000
+            // approve the stake contract to spend 10 ANS Token
+            await tokenContract.connect(owner).approve(stakeContract.address,BigInt(depositAmount))
+            // deposit 10 ANS
+            await stakeContract.connect(owner).depositOwner(depositAmount)
+            expect(await tokenContract.balanceOf(stakeContract.address)).to.equal(depositAmount)
+
+            await stakeContract.connect(owner).ownerWithdraw(depositAmount)
+            expect(await tokenContract.balanceOf(stakeContract.address)).to.equal(0)
+        })
     })
 })
