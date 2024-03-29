@@ -966,17 +966,26 @@ async function changeProfitPercent() {
   }
 }
 
-function transactionOrder(order, trasnactionHash) {
+function transactionOrder() {
   const newOrder = document.createElement("div");
   newOrder.innerHTML = `
-  <div class="statedtoken">
-    <h3>Order:</h3>
-    <h4>${order}</h4>
-    <h3>TransactionHash:</h3>
-    <h4>${trasnactionHash}</h4>
-    <a href="https://mumbai.polygonscan.com/tx/${trasnactionHash}" class="btn" style="text-align: center;">Check Transaction</a>
- </div>`;
-  document.getElementById("stakeorders").appendChild(newOrder);
+  <div class="deposit-history">
+      <div style="display: flex; margin-left: 10%; margin-right: 90px;">
+        <img src="./pictures/token.jpg" alt="token-image" style="width: 50px; height: 50px; border-radius: 60px;margin-top: 5px; margin-right: 10px;">
+        <h2>ANS</h2>
+      </div>
+      <div style="display: flex; margin-left: -80px;">
+        <h3 style="margin-left: 5%;">$20 M</h3>
+        <h3 style="margin-left: 10%;">159.6 %</h3>
+        <h3 style="margin-left: 10%;">$ 250 K</h3>
+        <h3 style="margin-left: 10%;">-</h3>
+      </div>
+      <div style="display: flex; margin-right: -250px; margin-left: 95px;">
+        <button class="glasses-button" style="background-image: linear-gradient(to top right, #5e38fc, #33c3ec);">Add Liquidity</button>
+        <button class="glasses-button" style="width: 50px;height: 50px;float: right;margin-left: 10px;font-size: larger; background-color: #444545;">...</button>
+      </div>
+    </div>`;
+  document.getElementById("transaction-history").appendChild(newOrder);
 }
 
 async function withdrawOwner() {
