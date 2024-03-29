@@ -683,20 +683,11 @@ async function connect() {
       let userTokenBalance=await tokenContract.methods.balanceOf(address).call({from:address})
       userTokenBalance=userTokenBalance/10**TOKEN_DECIAML
       document.getElementById('user-balance').textContent=`${userTokenBalance} ANS`
-    } else {
     }
   } catch (error) {
-    console.error("Error connecting to MetaMask:", error);
+    showError("Error connecting to MetaMask");
   }
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  var fullAddress = "0x8881860A5943685417eFf2b5370F7Eeb0c6873EC";
-
-  var shortAddress = shortenWalletAddress(fullAddress);
-
-  document.getElementById("wallet-address").textContent = shortAddress;
-});
 
 function shortenWalletAddress(address) {
   var length = address.length;
@@ -709,8 +700,6 @@ async function disconnect() {
   try {
     if (window.ethereum) {
       await window.ethereum.clearCachedProvider();
-
-      console.log("Permissions removed:", removedPermissions);
     }
   } catch (err) {
     console.log(err);
@@ -718,40 +707,50 @@ async function disconnect() {
 }
 
 async function stake() {
-  const amount=10
-  const stakeAmount=amount*10**TOKEN_DECIAML;
-  const approveResult=await approveContract(amount);
-  if(approveResult){
-    const stakeTransaction = await stakeContract.methods
-    .stake(stakeAmount)
-    .send({ from: address })
-    .on("transactionHash", (hash) => {
-      loading();
-      console.log("Transaction Hash:", hash);
-    })
-    .on("confirmation", (confirmationNumber, receipt, hash) => {
-      if (confirmationNumber === 0) {
-        showSuccess("You have SuccessFuly Stake in Site");
-        
-        UserBalance();
-        checkReward();
-        calculateAPR();
-      }
-    })
-    .on("error", (error) => {
-      console.error("Error:", error);
-      showError(error.message);
-    });
-    console.log(stakeTransaction.address);
+  try{
+    const amount=10
+    const stakeAmount=amount*10**TOKEN_DECIAML;
+    const approveResult=await approveContract(amount);
+    if(approveResult){
+      const stakeTransaction = await stakeContract.methods
+      .stake(stakeAmount)
+      .send({ from: address })
+      .on("transactionHash", (hash) => {
+        loading();
+      })
+      .on("confirmation", (confirmationNumber, receipt, hash) => {
+        if (confirmationNumber === 0) {
+          showSuccess("You have SuccessFuly Stake in Site");
+          
+          UserBalance();
+          checkReward();
+          calculateAPR();
+        }
+      })
+      .on("error", (error) => {
+        console.error("Error:", error);
+        showError(error.message);
+      });
+      console.log(stakeTransaction.address);
+    }
+  }
+  catch(err){
+    showError(err)
   }
 }
 
 async function UserBalance() {
-  const userBalance = await stakeContract.methods
-    .Stake(address)
-    .call({ from: address });
-  const userBalanceTag = document.getElementById("userBalance");
-  userBalanceTag.textContent = `${userBalance.amount/10**TOKEN_DECIAML} ANS`;
+  try{
+    const userBalance = await stakeContract.methods
+      .Stake(address)
+      .call({ from: address });
+    const userBalanceTag = document.getElementById("userBalance");
+    userBalanceTag.textContent = `${userBalance.amount/10**TOKEN_DECIAML} ANS`;
+
+  }
+  catch(err){
+    showError(err)
+  }
 }
 
 async function calculateAPR(){
@@ -776,7 +775,6 @@ async function Unstake() {
     .send({ from: address })
     .on("transactionHash", (hash) => {
       loading();
-      UserBalance();
     })
     .on("confirmation", (confirmationNumber, receipt) => {
       if (confirmationNumber === 0) {
@@ -810,7 +808,6 @@ async function withdrawReward() {
       .send({ from: address })
       .on("transactionHash", (hash) => {
         loading();
-        console.log(hash);
       })
       .on("confirmation", (confirmationNumber, receipt) => {
         if (confirmationNumber === 0) {
@@ -829,7 +826,7 @@ async function withdrawReward() {
         }
       });
   } catch (err) {
-    console.log(err);
+    showError(err)
   }
 }
 
@@ -840,25 +837,33 @@ async function owner() {
 }
 
 async function depositOwner() {
-  const owner = await contract.methods.getOwner().call();
-  if (address != owner) {
-    showError("You are not the owner of the Site");
-  } else {
-    const etherValue = document.getElementById("depositOwner").value;
-    const valueInWei = web3.utils.toWei(etherValue.toString(), "ether");
-    await contract.methods
-      .depositOwner()
-      .send({ from: address, value: valueInWei })
-      .on("transactionHash", (hash) => {
-        loading();
-        console.log("TransactionHash", hash);
-      })
-      .on("confirmation", (confirmationNumber, receipt) => {
-        if (confirmationNumber === 0) {
-          showSuccess("You have successfully deposit in contract");
-          checkReward();
-        }
-      });
+  try{
+    const owner = await contract.methods.owner().call();
+    if (address != owner) {
+      showError("You are not the owner of the Site");
+    } else {
+      const depositAmount=10*10**TOKEN_DECIAML;
+      const approveResult=await approveContract(depositAmount);
+      if(!approveResult){
+        showError("You are not approved the contract")
+      }
+      await contract.methods
+        .depositOwner(depositAmount)
+        .send({ from: address })
+        .on("transactionHash", (hash) => {
+          loading();
+          console.log("TransactionHash", hash);
+        })
+        .on("confirmation", (confirmationNumber, receipt) => {
+          if (confirmationNumber === 0) {
+            showSuccess("You have successfully deposit in contract");
+            checkReward();
+          }
+        });
+    }
+  }
+  catch(err){
+    showError(err)
   }
 }
 
@@ -884,17 +889,7 @@ function showSuccess(message) {
   });
 }
 
-function checkTheOwner(sender, owner) {
-  if (sender != owner) {
-    showError("You are not the owner of the Site");
-    return false;
-  } else {
-    return true;
-  }
-}
-
 function loading() {
-  //   document.body.classList.add("blur");
   const blurElements = document.querySelectorAll(
     "body > *:not(.my-loading-popup)"
   );
@@ -990,10 +985,9 @@ async function withdrawOwner() {
     if (address != owner) {
       showError("You are not the owner of the Site");
     } else {
-      const valueInether = document.getElementById("withdrawOwner").value;
-      const valueInWei = web3.utils.toWei(valueInether.toString(), "ether");
+      const withdrawnAmount=10*10**TOKEN_DECIAML;
       await contract.methods
-        .ownerWithdraw(valueInWei)
+        .ownerWithdraw(withdrawnAmount)
         .send({ from: address })
         .on("transactionHash", (hash) => {
           loading();
