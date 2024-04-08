@@ -1,6 +1,6 @@
 const web3 = new Web3(window.ethereum);
 
-const TOKEN_CONTRACT_ADDRESS = "0x3b6B3F042A505910aa619730617D4CEacDABe3c1";
+const TOKEN_CONTRACT_ADDRESS = "0x578A194fa5A8d0C9cd16438051B548733AF004bF";
 const TOKEN_CONTRACT_ABI = [
   {
     inputs: [],
@@ -364,7 +364,7 @@ const TOKEN_CONTRACT_ABI = [
 ];
 const TOKEN_DECIAML = 6;
 
-const STAKE_CONTRACT_ADDRESS = "0xb24D456804189cf62cd319b69E5934F795D78CAF";
+const STAKE_CONTRACT_ADDRESS = "0xFbF06254F385eABF42D53703c8edc775C29DA906";
 const STAKE_CONTRACT_ABI = [
   {
     "inputs": [
@@ -637,7 +637,7 @@ const STAKE_CONTRACT_ABI = [
   },
   {
     "inputs": [],
-    "name": "unSatke",
+    "name": "unStake",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -676,7 +676,7 @@ async function connect() {
       UserBalance();
       checkReward();
       calculateAPR();
-
+      
       document.getElementById('connect-button').style.display='none'
       document.getElementById('user-wallet').style.display='flex'
 
@@ -725,6 +725,9 @@ async function stake() {
           UserBalance();
           checkReward();
           calculateAPR();
+          console.log(hash)
+          console.log(receipt)
+          transactionOrder(hash);
         }
       })
       .on("error", (error) => {
@@ -966,7 +969,7 @@ async function changeProfitPercent() {
   }
 }
 
-function transactionOrder() {
+function transactionOrder(transaction) {
   const newOrder = document.createElement("div");
   newOrder.innerHTML = `
   <div class="deposit-history">
@@ -975,13 +978,10 @@ function transactionOrder() {
         <h2>ANS</h2>
       </div>
       <div style="display: flex; margin-left: -80px;">
-        <h3 style="margin-left: 5%;">$20 M</h3>
-        <h3 style="margin-left: 10%;">159.6 %</h3>
-        <h3 style="margin-left: 10%;">$ 250 K</h3>
-        <h3 style="margin-left: 10%;">-</h3>
-      </div>
+        <h4>${transaction}</h4>
+      </div>  
       <div style="display: flex; margin-right: -250px; margin-left: 95px;">
-        <button class="glasses-button" style="background-image: linear-gradient(to top right, #5e38fc, #33c3ec);">Add Liquidity</button>
+        <button class="glasses-button" style="background-image: linear-gradient(to top right, #5e38fc, #33c3ec); onclick"redirectToTransaction('${transaction}')">See Transaction</button>
         <button class="glasses-button" style="width: 50px;height: 50px;float: right;margin-left: 10px;font-size: larger; background-color: #444545;">...</button>
       </div>
     </div>`;
@@ -1051,6 +1051,24 @@ async function approveContract(amount) {
 async function redirectToContract(){
   try{
     window.location.href=`https://mumbai.polygonscan.com/address/${STAKE_CONTRACT_ADDRESS}`
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+async function redirectToPortfolio(){
+  try{
+    window.location.href=`https://amirali-nasrollahi.liara.run`
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+async function redirectToTransaction(transaction){
+  try{
+    window.location.href=`https://mumbai.polygonscan.com/address/${transaction}`
   }
   catch(err){
     console.log(err)

@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 //......................get the provider and private key from .env file.....................
-const POL_RPC_URL= process.env.BSC_RPC_URL;
+const POL_RPC_URL= process.env.POL_RPC_URL;
 const PRIVATE_KEY= process.env.PRIVATE_KEY;
 
 
@@ -13,8 +13,8 @@ module.exports = {
   networks:{
     hardhat:{},
     mumbai:{
-      url:"https://polygon-testnet-rpc.allthatnode.com",
-      accounts:["841f4a07b59cfa1357fac5ecb69b5fb9ed24b477fac3c351e1e6ec1b27eb18e0"],
+      url:POL_RPC_URL,
+      accounts:[PRIVATE_KEY],
       chainId:80001,
       ens:false
     }
