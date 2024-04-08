@@ -15,9 +15,9 @@ This project is a staking website built on the Mumbai Polygon Network, a layer 2
 - CSS: Styling language for designing the website's appearance.
 
 ## Usage
-1. Clone the repository: `git clone https://github.com/your-username/your-repository.git`
-2. Install dependencies: `npm install`
-3. Start the development server: `npm run dev`
+1. Clone the repository: `git clone https://github.com/AmirNasrollahi/Stake-project`
+2. Install dependencies: `npm install live-server`
+3. Start the development server: `npx live-server`
 
 ## Getting Started
 To get started with this project, follow these steps:
@@ -26,9 +26,8 @@ To get started with this project, follow these steps:
 3. Connect your wallet to the website by clicking the "Connect Wallet" button.
 4. Once connected, you can view your wallet address and balance in the user profile section.
 5. Navigate to the staking panel, where you can see available tokens for staking, APR (Annual Percentage Rate), rewards, and earned amounts.
-6. Click the "Stake Now" button to stake your tokens. Enter the amount you want to stake and confirm the transaction in your wallet.
-7. Monitor your staked balance and earned rewards in the deposit history section.
-8. You can also add liquidity, claim rewards, or unstake your tokens using the options available in the dropdown menu.
+6. Click the "Stake Now" button to stake your tokens.
+7. You can also claim rewards, or unstake your tokens using the options available in the dropdown menu.
 
 ## Testimonials
 "Using this staking website on the Mumbai Polygon Network has been a breeze. The user interface is intuitive, and the staking process is straightforward." - CryptoEnthusiast123
