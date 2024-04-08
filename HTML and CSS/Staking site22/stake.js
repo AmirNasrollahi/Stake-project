@@ -725,9 +725,6 @@ async function stake() {
           UserBalance();
           checkReward();
           calculateAPR();
-          console.log(hash)
-          console.log(receipt)
-          transactionOrder(hash);
         }
       })
       .on("error", (error) => {
