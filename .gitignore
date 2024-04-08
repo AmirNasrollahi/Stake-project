@@ -3,6 +3,7 @@
 /dist
 /cache
 /artifacts
+/.env
 # Logs
 logs
 *.log

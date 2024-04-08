@@ -33,9 +33,5 @@ To get started with this project, follow these steps:
 ## Testimonials
 "Using this staking website on the Mumbai Polygon Network has been a breeze. The user interface is intuitive, and the staking process is straightforward." - CryptoEnthusiast123
 
-## Contributors
-- [@your-username](https://github.com/your-username)
 
-## License
-This project is licensed under the [MIT License](LICENSE).
 
