@@ -1,7 +1,7 @@
-# Stake Website on Mumbai Polygon Network
+# Stake Website on Amoy Polygon Network
 
 ## Introduction
-This project is a staking website built on the amoy Polygon test Network, a layer 2 scaling solution for Ethereum. It allows users to stake their tokens and earn rewards. The website utilizes Solidity smart contracts deployed on the Mumbai test network.
+This project is a staking website built on the amoy Polygon test Network, a layer 2 scaling solution for Ethereum. It allows users to stake their tokens and earn rewards. The website utilizes Solidity smart contracts deployed on the Amoy test network.
 
 ## Features
 - Staking functionality: Users can stake their tokens to earn rewards.
@@ -22,7 +22,7 @@ This project is a staking website built on the amoy Polygon test Network, a laye
 ## Getting Started
 To get started with this project, follow these steps:
 1. Ensure you have an Ethereum wallet like MetaMask installed in your browser.
-2. Switch your MetaMask network to the Mumbai test network.
+2. Switch your MetaMask network to the Amoy test network.
 3. Connect your wallet to the website by clicking the "Connect Wallet" button.
 4. Once connected, you can view your wallet address and balance in the user profile section.
 5. Navigate to the staking panel, where you can see available tokens for staking, APR (Annual Percentage Rate), rewards, and earned amounts.
@@ -30,7 +30,7 @@ To get started with this project, follow these steps:
 7. You can also claim rewards, or unstake your tokens using the options available in the dropdown menu.
 
 ## Testimonials
-"Using this staking website on the Mumbai Polygon Network has been a breeze. The user interface is intuitive, and the staking process is straightforward." - CryptoEnthusiast123
+"Using this staking website on the Amoy Polygon Network has been a breeze. The user interface is intuitive, and the staking process is straightforward." - CryptoEnthusiast123
 
 
 
