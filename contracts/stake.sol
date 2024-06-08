@@ -3,6 +3,7 @@ pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 
 library SafeMath {
@@ -68,14 +69,13 @@ library SafeMath {
     }
 }
 
-contract stakeContract is ReentrancyGuard {
+contract stakeContract is ReentrancyGuard,Ownable {
     event StakeEvent(address indexed user, uint256 amount);
     event UnstakeEvent(address indexed user, uint256 amount);
     event ClaimRewardEvent(address indexed user, uint256 amount);
 
     uint256 public timeReward;
     uint256 public rewardPercent;
-    address payable public immutable owner;
     IERC20 public token;
     using SafeMath for uint256;
 
@@ -86,17 +86,12 @@ contract stakeContract is ReentrancyGuard {
 
     mapping(address => StakeInfo) public Stake;
 
-    constructor(address _token,uint256 _timeReward, uint256 _rewardPercent) {
+    constructor(address _token,uint256 _timeReward, uint256 _rewardPercent)Ownable(msg.sender) {
         token=IERC20(_token);
         timeReward = _timeReward;
         rewardPercent = _rewardPercent;
-        owner = payable(msg.sender);
     }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "You are not the owner of this contract");
-        _;
-    }
 
     function stake(uint256 _amount) public {
         require(_amount != 0, "The minimum value error");

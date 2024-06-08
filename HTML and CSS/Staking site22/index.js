@@ -1,6 +1,6 @@
 const web3 = new Web3(window.ethereum);
 
-const TOKEN_CONTRACT_ADDRESS = "0x578A194fa5A8d0C9cd16438051B548733AF004bF";
+const TOKEN_CONTRACT_ADDRESS = "0x05170fBA8e72412851F178b15fd938E0F64699d7";
 const TOKEN_CONTRACT_ABI = [
   {
     inputs: [],
@@ -364,7 +364,7 @@ const TOKEN_CONTRACT_ABI = [
 ];
 const TOKEN_DECIAML = 6;
 
-const STAKE_CONTRACT_ADDRESS = "0xFbF06254F385eABF42D53703c8edc775C29DA906";
+const STAKE_CONTRACT_ADDRESS = "0xc7440eBfd2cA0d85159B7c54d5E57aBCc33278F0";
 const STAKE_CONTRACT_ABI = [
   {
     "inputs": [
@@ -651,6 +651,163 @@ const STAKE_CONTRACT_ABI = [
   }
 ]
 
+const AIRDROP_CONTRACT_ADDRESS='0x663be0c5eB04532c13e05B28555739bB11D99A9F'
+const AIRDROP_CONTRACT_ABI=[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amountPerUser",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_recipient",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "AirdropDistributed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "alreadyGetToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "amountPerUser",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
+
 const stakeContract = new web3.eth.Contract(
   STAKE_CONTRACT_ABI,
   STAKE_CONTRACT_ADDRESS
@@ -659,6 +816,10 @@ const tokenContract = new web3.eth.Contract(
   TOKEN_CONTRACT_ABI,
   TOKEN_CONTRACT_ADDRESS
 );
+const airdropContract=new web3.eth.Contract(
+  AIRDROP_CONTRACT_ABI,
+  AIRDROP_CONTRACT_ADDRESS
+)
 var address;
 
 async function connect() {
@@ -1047,7 +1208,7 @@ async function approveContract(amount) {
 
 async function redirectToContract(){
   try{
-    window.location.href=`https://mumbai.polygonscan.com/address/${STAKE_CONTRACT_ADDRESS}`
+    window.location.href=`https://amoy.polygonscan.com/address/${STAKE_CONTRACT_ADDRESS}`
   }
   catch(err){
     console.log(err)
@@ -1066,6 +1227,15 @@ async function redirectToPortfolio(){
 async function redirectToTransaction(transaction){
   try{
     window.location.href=`https://mumbai.polygonscan.com/address/${transaction}`
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+async function redirectToLogin(){
+  try{
+    window.location.href=`./login.html`
   }
   catch(err){
     console.log(err)

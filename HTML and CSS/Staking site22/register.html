@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="min-h-screen flex items-center justify-center bg-zinc-100 dark:bg-zinc-800">
+    <div class="bg-white dark:bg-zinc-900 shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h2 class="text-3xl font-bold text-center mb-6 text-zinc-800 dark:text-zinc-200">Create an Account</h2>
+        <form>
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Username</label>
+                <input type="text" id="username" name="username" class="w-full mt-1 px-3 py-2 border dark:border-zinc-600 rounded-md focus:outline-none focus:ring focus:ring-blue-400" placeholder="john_doe" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Email Address</label>
+                <input type="email" id="email" name="email" class="w-full mt-1 px-3 py-2 border dark:border-zinc-600 rounded-md focus:outline-none focus:ring focus:ring-blue-400" placeholder="john.doe@example.com" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Password</label>
+                <input type="password" id="password" name="password" class="w-full mt-1 px-3 py-2 border dark:border-zinc-600 rounded-md focus:outline-none focus:ring focus:ring-blue-400" placeholder="********" required>
+            </div>
+            <div class="mb-4">
+                <label for="captcha" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Captcha</label>
+                <input type="text" id="captcha" name="captcha" class="w-full mt-1 px-3 py-2 border dark:border-zinc-600 rounded-md focus:outline-none focus:ring focus:ring-blue-400" placeholder="Enter the code" required>
+                <img src="https://placehold.co/150" alt="captcha" class="mt-2" />
+            </div>
+            <button onclick="getUsers()" class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400">Register</button>
+        </form>
+        <p class="text-sm text-center mt-4 text-zinc-700 dark:text-zinc-300">Already have an account? <a href="#" class="text-blue-500 dark:text-blue-400">Sign In here</a></p>
+    </div>
+</div>
+  </body>
+  <script src="./register.js"></script>
+</html>

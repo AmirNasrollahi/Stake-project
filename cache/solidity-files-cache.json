@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\block chain\\Projects\\Stake-project\\contracts\\stake.sol": {
-      "lastModificationDate": 1711618061442,
-      "contentHash": "50b8edba32494cbeea96b5a219eeb36c",
+      "lastModificationDate": 1717879769793,
+      "contentHash": "5e62951493a75abca66a70def74fa1a3",
       "sourceName": "contracts/stake.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -30,7 +30,8 @@
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "@openzeppelin/contracts/utils/ReentrancyGuard.sol"
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
       ],
       "versionPragmas": [
         "0.8.20"
@@ -147,6 +148,117 @@
         "IBEP20",
         "Ownable",
         "SafeMath"
+      ]
+    },
+    "D:\\block chain\\Projects\\Stake-project\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1703870088373,
+      "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "D:\\block chain\\Projects\\Stake-project\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1703870088298,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "D:\\block chain\\Projects\\Stake-project\\contracts\\airdrop.sol": {
+      "lastModificationDate": 1717883561200,
+      "contentHash": "5466d99bfb2f983234d676ec1108e2cf",
+      "sourceName": "contracts/airdrop.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "0.8.20"
+      ],
+      "artifacts": [
+        "Airdrop"
       ]
     }
   }

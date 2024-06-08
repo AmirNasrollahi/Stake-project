@@ -1,7 +1,7 @@
 # Stake Website on Mumbai Polygon Network
 
 ## Introduction
-This project is a staking website built on the Mumbai Polygon Network, a layer 2 scaling solution for Ethereum. It allows users to stake their tokens and earn rewards. The website utilizes Solidity smart contracts deployed on the Mumbai test network.
+This project is a staking website built on the amoy Polygon test Network, a layer 2 scaling solution for Ethereum. It allows users to stake their tokens and earn rewards. The website utilizes Solidity smart contracts deployed on the Mumbai test network.
 
 ## Features
 - Staking functionality: Users can stake their tokens to earn rewards.

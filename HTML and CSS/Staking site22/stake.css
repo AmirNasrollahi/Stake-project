@@ -208,6 +208,17 @@ body {
   background-color: #232425;
   border: none;
   color: white;
+  border-radius: 0px 0px 0px 0px;
+  font-size: large;
+  transition: 0.8s;
+}
+
+.dashboard-btn4{
+  width: 150px;
+  height: 40px;
+  background-color: #232425;
+  border: none;
+  color: white;
   border-radius: 0px 10px 10px 0px;
   font-size: large;
   transition: 0.8s;
@@ -224,6 +235,11 @@ body {
   border-radius: 10px 10px 10px 10px;
 }
 .dashboard-btn3:hover{
+  background-color: white;
+  color:#232425;
+  border-radius: 10px 10px 10px 10px;
+}
+.dashboard-btn4:hover{
   background-color: white;
   color:#232425;
   border-radius: 10px 10px 10px 10px;

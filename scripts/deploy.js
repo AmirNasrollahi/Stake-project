@@ -1,30 +1,49 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
-const {ethers} = require("hardhat");
+const { ethers, run, network } = require("hardhat");
 
 async function main() {
-  //................get the contract...................
-  const stakeContract=await ethers.getContractFactory("stakeContract");
-  const ANSTokenContrcat=await ethers.getContractFactory("ANSToken")
-  console.log("deploying contracts...");
-  // ................deploy the token contract...................
-  const ANSToken=await ANSTokenContrcat.deploy();
-  //................wait to contract deploy...................
+  console.log(`Deploying contracts to network: ${network.name}`);
+
+  const StakeContract = await ethers.getContractFactory("stakeContract");
+  const ANSTokenContract = await ethers.getContractFactory("ANSToken");
+  const AirDropContract=await ethers.getContractFactory('Airdrop');
+
+  console.log("☕ Deploying contracts...");
+
+  const ANSToken = await ANSTokenContract.deploy();
   await ANSToken.deployed();
-  console.log(`ANSToken deployed to:${ANSToken.address}`);
-  // ................deploy the stake contract...................
-  const Stake=await stakeContract.deploy(`${ANSToken.address}`,1800,15);
-  //................wait to contract deploy...................
+  console.log(`✅ ANSToken deployed to: ${ANSToken.address}`);
+
+  const Stake = await StakeContract.deploy(ANSToken.address, 1800, 15);
   await Stake.deployed();
-  console.log(`stake contract deployed to:${Stake.address}`);
+  console.log(`✅ Stake contract deployed to: ${Stake.address}`);
+
+  const Airdrop=await AirDropContract.deploy(ANSToken.address,1000*10**6)
+  await Airdrop.deployed()
+  console.log(`✅ AirDrop contract deployed to: ${Airdrop.address}`);
+
+  // if (network.name === 'amoy') {
+  //   console.log(`☕️ Verifying the contracts source code on block explorer...`);
+
+  //   try {
+  //     await run("verify:verify", {
+  //       address: ANSToken.address,
+  //       constructorArguments: []
+  //     });
+  //     console.log(`✅ ANSToken verified`);
+
+  //     await run("verify:verify", {
+  //       address: Stake.address,
+  //       constructorArguments: [ANSToken.address, 1800, 15]
+  //     });
+  //     console.log(`✅ Stake contract verified`);
+  //   } catch (error) {
+  //     console.error("❌ Verification failed:", error);
+  //   }
+  // } else {
+  //   console.log("Skipping verification on local network");
+  // }
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;

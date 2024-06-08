@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 flex flex-col items-center justify-center p-4">
+  <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg max-w-md w-full p-6">
+    <h1 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">Claim Your Tokens</h1>
+    <p class="text-zinc-600 dark:text-zinc-400 mb-6">Enter your wallet address to receive your airdrop tokens.</p>
+    <form id="airdropForm" class="space-y-4">
+      <div>
+        <label for="walletAddress" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Wallet Address</label>
+        <input type="text" id="walletAddress" name="walletAddress" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:focus:ring-indigo-400 dark:focus:border-indigo-400 sm:text-sm" placeholder="0x1234...">
+      </div>
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">Claim Tokens</button>
+    </form>
+    <div id="successMessage" class="hidden mt-4 text-green-600 dark:text-green-400">Tokens successfully claimed!</div>
+    <div class="mt-6">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2">How it works</h2>
+      <p class="text-zinc-600 dark:text-zinc-400 mb-4">Our airdrop is a simple and secure way to distribute tokens to our community. Just enter your wallet address and claim your tokens instantly.</p>
+      <img src="./pictures/token.jpg" alt="Airdrop process" class="w-full rounded-md shadow-md ">
+    </div>
+    <div class="mt-6">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2">Airdrop Details</h2>
+      <p class="text-zinc-600 dark:text-zinc-400 mb-2">Total Airdrop Amount: 1,000,000 Tokens</p>
+      <p class="text-zinc-600 dark:text-zinc-400">Amount Per User: 100 Tokens</p>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('airdropForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.getElementById('successMessage').classList.remove('hidden');
+  });
+</script>
+  </body>
+</html>
