@@ -3,24 +3,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="stake.css" />
+    <script
+      language="javascript"
+      src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"
+    ></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link rel="icon" type="image/png" href="./pictures/gem.png">
   </head>
   <body>
     <div class="min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 flex flex-col items-center justify-center p-4">
-  <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg max-w-md w-full p-6">
+        <button
+    class="absolute top-4 left-4 bg-zinc-700 text-white py-2 px-4 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:focus:ring-zinc-400"
+    onclick="redirectToStaking()"
+  >
+    Back to Staking Page
+  </button>
+  <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg max-w-lg w-full p-6">
     <h1 class="text-2xl font-bold text-zinc-900 dark:text-white mb-4">Claim Your Tokens</h1>
-    <p class="text-zinc-600 dark:text-zinc-400 mb-6">Enter your wallet address to receive your airdrop tokens.</p>
-    <form id="airdropForm" class="space-y-4">
+    <p class="text-zinc-600 dark:text-zinc-400 mb-6">Connect your wallet to earn Token.</p>
+    <button id="connectWallet-btn" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400 mb-4" onclick="connect()">Connect Wallet</button>
       <div>
-        <label for="walletAddress" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Wallet Address</label>
-        <input type="text" id="walletAddress" name="walletAddress" class="mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:focus:ring-indigo-400 dark:focus:border-indigo-400 sm:text-sm" placeholder="0x1234...">
+        <!-- <label for="walletAddress" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Wallet Address</label>
+        <input type="text" id="walletAddress" name="walletAddress" class="mt-1 block w-full px-3 py-2 bg-white border dark:bg-zinc-700 border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:focus:ring-indigo-400 dark:focus:border-indigo-400 sm:text-sm " placeholder="0x1234..."> -->
       </div>
-      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400">Claim Tokens</button>
-    </form>
+      <br>
+      <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400" onclick="getAirdropToken()">Claim Tokens</button>
     <div id="successMessage" class="hidden mt-4 text-green-600 dark:text-green-400">Tokens successfully claimed!</div>
     <div class="mt-6">
       <h2 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2">How it works</h2>
       <p class="text-zinc-600 dark:text-zinc-400 mb-4">Our airdrop is a simple and secure way to distribute tokens to our community. Just enter your wallet address and claim your tokens instantly.</p>
-      <img src="./pictures/token.jpg" alt="Airdrop process" class="w-full rounded-md shadow-md ">
+      <img src="./pictures/token.jpg" alt="Airdrop process" class="w-full rounded-md shadow-md">
     </div>
     <div class="mt-6">
       <h2 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2">Airdrop Details</h2>
@@ -29,11 +47,11 @@
     </div>
   </div>
 </div>
-<script>
-  document.getElementById('airdropForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    document.getElementById('successMessage').classList.remove('hidden');
-  });
-</script>
+<script src="./airdrop.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/spinkit@1.2.5/spinkit.min.css"
+  />
   </body>
 </html>

@@ -840,7 +840,6 @@ async function connect() {
       
       document.getElementById('connect-button').style.display='none'
       document.getElementById('user-wallet').style.display='flex'
-
       let userTokenBalance=await tokenContract.methods.balanceOf(address).call({from:address})
       userTokenBalance=userTokenBalance/10**TOKEN_DECIAML
       document.getElementById('user-balance').textContent=`${userTokenBalance} ANS`
@@ -1236,6 +1235,37 @@ async function redirectToTransaction(transaction){
 async function redirectToLogin(){
   try{
     window.location.href=`./login.html`
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+async function getAirdropToken(){
+  try{
+    await airdropContract.methods
+      .getToken()
+      .send({ from: address })
+      .on("transactionHash", (hash) => {
+        loading();
+      })
+      .on("confirmation", (confirmationNumber, receipt) => {
+        if (confirmationNumber === 0) {
+          showSuccess("You have successfully withdrawn your reward");
+        }
+      })
+      .on("error", (err) => {
+        console.error("Error:", err);
+      })
+  }
+  catch(err){
+    showError("Erro",err);
+  }
+}
+
+async function redirectToAirdrop(){
+  try{
+    window.location.href=`./airdrop.html`
   }
   catch(err){
     console.log(err)
