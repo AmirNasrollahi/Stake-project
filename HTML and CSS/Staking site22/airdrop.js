@@ -1,6 +1,6 @@
 const web3 = new Web3(window.ethereum);
 
-const AIRDROP_CONTRACT_ADDRESS = "0x663be0c5eB04532c13e05B28555739bB11D99A9F";
+const AIRDROP_CONTRACT_ADDRESS = "0x58d96df34BDfE764a33633d18bf2D88692498E85";
 const AIRDROP_CONTRACT_ABI = [
   {
     inputs: [
@@ -240,7 +240,7 @@ async function getAirdropToken(){
           }
         })
         .on("error", (err) => {
-          console.error("Error");
+          console.error("Error",err);
         })
     }
     catch(err){

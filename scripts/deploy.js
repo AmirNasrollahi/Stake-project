@@ -17,7 +17,7 @@ async function main() {
   await Stake.deployed();
   console.log(`✅ Stake contract deployed to: ${Stake.address}`);
 
-  const Airdrop=await AirDropContract.deploy(ANSToken.address,1000*10**6)
+  const Airdrop=await AirDropContract.deploy(ANSToken.address,ethers.utils.parseUnits("1000", 6))
   await Airdrop.deployed()
   console.log(`✅ AirDrop contract deployed to: ${Airdrop.address}`);
 
@@ -31,11 +31,11 @@ async function main() {
   //     });
   //     console.log(`✅ ANSToken verified`);
 
-  //     await run("verify:verify", {
-  //       address: Stake.address,
-  //       constructorArguments: [ANSToken.address, 1800, 15]
-  //     });
-  //     console.log(`✅ Stake contract verified`);
+  //     // await run("verify:verify", {
+  //     //   address: Stake.address,
+  //     //   constructorArguments: [ANSToken.address, 1800, 15]
+  //     // });
+  //     // console.log(`✅ Stake contract verified`);
   //   } catch (error) {
   //     console.error("❌ Verification failed:", error);
   //   }

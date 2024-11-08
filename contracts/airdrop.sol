@@ -26,5 +26,6 @@ contract Airdrop is ReentrancyGuard, Ownable{
         require(alreadyGetToken[msg.sender]==false,"You Have been already get Token");
         alreadyGetToken[msg.sender]=true;
         require(token.transfer(msg.sender, amountPerUser),"Transaction Faild");
+        emit AirdropDistributed(msg.sender, amountPerUser);
     }
 }
